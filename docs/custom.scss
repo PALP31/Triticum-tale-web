@@ -16,6 +16,11 @@ h2 {
   text-decoration: underline;
 }
 
+.navbar .navbar-nav .nav-link:focus-visible {
+  outline: 2px solid $navbar-hl;
+  outline-offset: 2px;
+}
+
 .hero {
   padding: 3rem 1.5rem;
   margin: 1.5rem 0 2rem;
