@@ -27,7 +27,7 @@ Below is an interactive Plotly visualization that showcases simulated stress-res
 library(tidyverse)
 library(plotly)
 
-set.seed(31)
+set.seed(42)
 n_per_group <- 12
 
 pca_data <- bind_rows(
