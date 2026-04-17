@@ -8,6 +8,10 @@ website:
     left:
       - href: index.qmd
         text: Home
+      - href: heat-stress.qmd
+        text: Estrés Térmico
+      - href: drought-stress.qmd
+        text: Estrés Hídrico
 
 format:
   html:
