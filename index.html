@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -70,15 +105,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<link href="site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
-<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-<script src="site_libs/plotly-binding-4.12.0/plotly.js"></script>
-<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
-<script src="site_libs/jquery-3.5.1/jquery.min.js"></script>
-<link href="site_libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
-<script src="site_libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
-<link href="site_libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet">
-<script src="site_libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
 
 
 </head>
@@ -169,19 +195,11 @@ ul.task-list li input[type="checkbox"] {
 <p>This project brings together transcriptomic, metabolomic, and integrative analyses to explore how durum wheat responds to heat and drought stress through interactive, narrative-driven visualizations.</p>
 <section id="explore-the-story" class="level2">
 <h2 class="anchored" data-anchor-id="explore-the-story">Explore the story</h2>
-<p>Below is an interactive Plotly visualization that showcases simulated stress-response separation.</p>
+<p>Below is a placeholder for an interactive Plotly visualization that will showcase mock stress-response patterns.</p>
 <div class="cell">
-<div id="fig-mock-plotly" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-mock-plotly-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="plotly html-widget html-fill-item" id="htmlwidget-c8368fd92a2929f760fa" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-c8368fd92a2929f760fa">{"x":{"visdat":{"58dc4201e13b":["function () ","plotlyVisDat"]},"cur_data":"58dc4201e13b","attrs":{"58dc4201e13b":{"x":{},"y":{},"mode":"markers","text":{},"hoverinfo":"text","color":{},"colors":["#003b71","#c5a059","#8c2d19"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Simulated Multi-Omic PCA: Treatment Separation","xaxis":{"domain":[0,1],"automargin":true,"title":"PC1 (42%)"},"yaxis":{"domain":[0,1],"automargin":true,"title":"PC2 (15%)"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[-1.6774249317119989,-2.8388189028376534,-2.2821229531975966,-2.1202824370233757,-2.2574390061154004,-2.5636747096548902,-1.5930868015366366,-2.5567954230478587,-1.2889457716737749,-2.5376284594314527,-1.7170782074659088,-1.1280127643793361],"y":[0.1055696494438304,0.66060561659131434,0.73333933180317101,1.1179751990350373,0.6578735392919639,-0.52822771045238781,-0.42023346428775965,1.4600566728650961,0.64668070296076274,-0.090654216989999981,0.71404132212018934,1.4073373495862995],"mode":"markers","text":["Sample: Control_1 <br>Treatment: Control","Sample: Control_2 <br>Treatment: Control","Sample: Control_3 <br>Treatment: Control","Sample: Control_4 <br>Treatment: Control","Sample: Control_5 <br>Treatment: Control","Sample: Control_6 <br>Treatment: Control","Sample: Control_7 <br>Treatment: Control","Sample: Control_8 <br>Treatment: Control","Sample: Control_9 <br>Treatment: Control","Sample: Control_10 <br>Treatment: Control","Sample: Control_11 <br>Treatment: Control","Sample: Control_12 <br>Treatment: Control"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text"],"type":"scatter","name":"Control","marker":{"color":"rgba(0,59,113,1)","line":{"color":"rgba(0,59,113,1)"}},"textfont":{"color":"rgba(0,59,113,1)"},"error_y":{"color":"rgba(0,59,113,1)"},"error_x":{"color":"rgba(0,59,113,1)"},"line":{"color":"rgba(0,59,113,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[3.5266354228854757,1.8986716078756605,2.0199114320617495,0.96578584036365411,2.5220681483818903,1.7520035868279167,2.5188150862688539,2.6933861360601736,2.9245724653789456,1.7737515372149524,2.5534685863085795,0.99809392464866042],"y":[1.4293245949723024,1.3894554434940889,0.45147541003202085,1.9216735641353533,2.0235991601201522,1.6833656208708001,2.35489794141971,1.4639771037540548,1.0790313733484234,2.1596908155332302,1.4131640942879971,2.7664607570327515],"mode":"markers","text":["Sample: Heat_1 <br>Treatment: Heat Stress","Sample: Heat_2 <br>Treatment: Heat Stress","Sample: Heat_3 <br>Treatment: Heat Stress","Sample: Heat_4 <br>Treatment: Heat Stress","Sample: Heat_5 <br>Treatment: Heat Stress","Sample: Heat_6 <br>Treatment: Heat Stress","Sample: Heat_7 <br>Treatment: Heat Stress","Sample: Heat_8 <br>Treatment: Heat Stress","Sample: Heat_9 <br>Treatment: Heat Stress","Sample: Heat_10 <br>Treatment: Heat Stress","Sample: Heat_11 <br>Treatment: Heat Stress","Sample: Heat_12 <br>Treatment: Heat Stress"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text"],"type":"scatter","name":"Heat Stress","marker":{"color":"rgba(197,160,89,1)","line":{"color":"rgba(197,160,89,1)"}},"textfont":{"color":"rgba(197,160,89,1)"},"error_y":{"color":"rgba(197,160,89,1)"},"error_x":{"color":"rgba(197,160,89,1)"},"line":{"color":"rgba(197,160,89,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[0.79798765817065831,1.5589535183815448,1.3253476856427626,0.55131274138373731,2.2030092638543843,1.5500295140021216,1.162832452619724,1.2935855231040243,1.5755021712386896,1.1628830206053573,-0.99516305820705409,1.2994180674714617],"y":[-2.520340785644585,-2.1888616610806344,-1.9509057635806959,-1.4601579036243928,-2.7363752356846787,-1.5184744207735137,-2.0984911281487553,-1.6768963407814272,-1.747562859025612,-1.8674731022798823,-2.9258713631407129,-2.3541118319664238],"mode":"markers","text":["Sample: Drought_1 <br>Treatment: Drought Stress","Sample: Drought_2 <br>Treatment: Drought Stress","Sample: Drought_3 <br>Treatment: Drought Stress","Sample: Drought_4 <br>Treatment: Drought Stress","Sample: Drought_5 <br>Treatment: Drought Stress","Sample: Drought_6 <br>Treatment: Drought Stress","Sample: Drought_7 <br>Treatment: Drought Stress","Sample: Drought_8 <br>Treatment: Drought Stress","Sample: Drought_9 <br>Treatment: Drought Stress","Sample: Drought_10 <br>Treatment: Drought Stress","Sample: Drought_11 <br>Treatment: Drought Stress","Sample: Drought_12 <br>Treatment: Drought Stress"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text"],"type":"scatter","name":"Drought Stress","marker":{"color":"rgba(140,45,25,1)","line":{"color":"rgba(140,45,25,1)"}},"textfont":{"color":"rgba(140,45,25,1)"},"error_y":{"color":"rgba(140,45,25,1)"},"error_x":{"color":"rgba(140,45,25,1)"},"line":{"color":"rgba(140,45,25,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-mock-plotly-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1
-</figcaption>
-</figure>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Placeholder for a future interactive Plotly graph</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Example:</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plotly::plot_ly(x = 1:10, y = rnorm(10), type = "scatter", mode = "lines+markers")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="reproducibility-bridge" class="level2">

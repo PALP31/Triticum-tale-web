@@ -25,7 +25,7 @@
     "href": "index.html#explore-the-story",
     "title": "Triticum Tale",
     "section": "Explore the story",
-    "text": "Explore the story\nBelow is an interactive Plotly visualization that showcases simulated stress-response separation.\n\n\n\n\n\n\n\n\nFigure 1"
+    "text": "Explore the story\nBelow is a placeholder for an interactive Plotly visualization that will showcase mock stress-response patterns.\n\n# Placeholder for a future interactive Plotly graph\n# Example:\n# plotly::plot_ly(x = 1:10, y = rnorm(10), type = \"scatter\", mode = \"lines+markers\")"
   },
   {
     "objectID": "index.html#reproducibility-bridge",
