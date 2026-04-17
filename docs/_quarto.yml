@@ -4,6 +4,7 @@ project:
 website:
   title: "Triticum Tale"
   navbar:
+    logo: logo-placeholder.svg
     left:
       - href: index.qmd
         text: Home
@@ -14,6 +15,5 @@ website:
 
 format:
   html:
-    theme: cosmo
-    css: ../assets/custom_theme.css
+    theme: [lux, custom.scss]
     toc: true

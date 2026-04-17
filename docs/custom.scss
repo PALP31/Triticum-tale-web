@@ -1,0 +1,21 @@
+$primary: #c5a059; // Candeal Gold
+$navbar-bg: #f8f9fa;
+$navbar-hl: #003b71; // PUC Blue for hover
+
+h1,
+h2 {
+  color: $primary;
+  font-family: "Merriweather", "Georgia", serif;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+  color: $navbar-hl !important;
+}
+
+.hero {
+  padding: 3rem 1.5rem;
+  margin: 1.5rem 0 2rem;
+  background: linear-gradient(135deg, rgba($primary, 0.15), rgba($navbar-bg, 1));
+  border-radius: 0.75rem;
+}
