@@ -16,15 +16,58 @@ This project brings together transcriptomic, metabolomic, and integrative analys
 
 ## Explore the story
 
-Below is a placeholder for an interactive Plotly visualization that will showcase mock stress-response patterns.
+Below is an interactive Plotly visualization that showcases simulated stress-response separation.
 
 ```{r}
 #| label: fig-mock-plotly
-#| echo: true
+#| echo: false
+#| warning: false
+#| message: false
 
-# Placeholder for a future interactive Plotly graph
-# Example:
-# plotly::plot_ly(x = 1:10, y = rnorm(10), type = "scatter", mode = "lines+markers")
+library(tidyverse)
+library(plotly)
+
+set.seed(42)
+n_per_group <- 12
+
+pca_data <- bind_rows(
+  tibble(
+    Sample = paste0("Control_", seq_len(n_per_group)),
+    PC1 = rnorm(n_per_group, mean = -2.5, sd = 0.6),
+    PC2 = rnorm(n_per_group, mean = 0.8, sd = 0.5),
+    Treatment = "Control"
+  ),
+  tibble(
+    Sample = paste0("Heat_", seq_len(n_per_group)),
+    PC1 = rnorm(n_per_group, mean = 2.2, sd = 0.7),
+    PC2 = rnorm(n_per_group, mean = 1.9, sd = 0.6),
+    Treatment = "Heat Stress"
+  ),
+  tibble(
+    Sample = paste0("Drought_", seq_len(n_per_group)),
+    PC1 = rnorm(n_per_group, mean = 1.1, sd = 0.7),
+    PC2 = rnorm(n_per_group, mean = -2.3, sd = 0.6),
+    Treatment = "Drought Stress"
+  )
+) %>%
+  mutate(Treatment = factor(Treatment, levels = c("Control", "Heat Stress", "Drought Stress")))
+
+plot_ly(
+  data = pca_data,
+  x = ~PC1,
+  y = ~PC2,
+  color = ~Treatment,
+  colors = c("Control" = "#003b71", "Heat Stress" = "#c5a059", "Drought Stress" = "#8c2d19"),
+  type = "scatter",
+  mode = "markers",
+  text = ~paste("Sample:", Sample, "<br>Treatment:", Treatment),
+  hoverinfo = "text"
+) %>%
+  layout(
+    title = "Simulated Multi-Omic PCA: Treatment Separation",
+    xaxis = list(title = "PC1 (42%)"),
+    yaxis = list(title = "PC2 (15%)")
+  )
 ```
 
 ## Reproducibility Bridge
