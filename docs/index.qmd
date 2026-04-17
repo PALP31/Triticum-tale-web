@@ -30,7 +30,7 @@ Below is a placeholder for an interactive Plotly visualization that will showcas
 ## Reproducibility Bridge
 
 ::: {.text-center .mt-4 .mb-5}
-[📊 Ver Pipeline Estadístico en GitHub](https://github.com/PALP31/BioAgro-Stats){.btn .btn-outline-primary}
+<a href="https://github.com/PALP31/BioAgro-Stats" class="btn btn-outline-primary" aria-label="Ver pipeline estadístico en GitHub en el repositorio BioAgro-Stats">📊 Ver Pipeline Estadístico en GitHub</a>
 
 *Todas las visualizaciones están respaldadas por modelos lineales mixtos y análisis multiómicos reproducibles.*
 :::
