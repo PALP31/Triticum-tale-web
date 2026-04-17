@@ -19,55 +19,37 @@ This project brings together transcriptomic, metabolomic, and integrative analys
 Below is an interactive Plotly visualization that showcases simulated stress-response separation.
 
 ```{r}
-#| label: fig-mock-plotly
 #| echo: false
-#| warning: false
 #| message: false
+#| warning: false
 
-library(tidyverse)
+# Ensure plotly is available
+if (!require("plotly", quietly = TRUE)) install.packages("plotly", repos = "http://cran.us.r-project.org")
+
 library(plotly)
 
+# Simulate Multi-Omic PCA data for Triticum durum
 set.seed(42)
-n_per_group <- 12
+n_samples <- 40
+pca_data <- data.frame(
+  Sample = paste0("Durum_WT_", 1:(n_samples*3)),
+  Treatment = factor(rep(c("Control", "Estrés Térmico", "Estrés Hídrico"), each = n_samples)),
+  PC1 = c(rnorm(n_samples, -5, 1.5), rnorm(n_samples, 4, 2), rnorm(n_samples, 1, 1.8)),
+  PC2 = c(rnorm(n_samples, 0, 1.5), rnorm(n_samples, 3, 1.5), rnorm(n_samples, -4, 1.5))
+)
 
-pca_data <- bind_rows(
-  tibble(
-    Sample = paste0("Control_", seq_len(n_per_group)),
-    PC1 = rnorm(n_per_group, mean = -2.5, sd = 0.6),
-    PC2 = rnorm(n_per_group, mean = 0.8, sd = 0.5),
-    Treatment = "Control"
-  ),
-  tibble(
-    Sample = paste0("Heat_", seq_len(n_per_group)),
-    PC1 = rnorm(n_per_group, mean = 2.2, sd = 0.7),
-    PC2 = rnorm(n_per_group, mean = 1.9, sd = 0.6),
-    Treatment = "Heat Stress"
-  ),
-  tibble(
-    Sample = paste0("Drought_", seq_len(n_per_group)),
-    PC1 = rnorm(n_per_group, mean = 1.1, sd = 0.7),
-    PC2 = rnorm(n_per_group, mean = -2.3, sd = 0.6),
-    Treatment = "Drought Stress"
-  )
-) %>%
-  mutate(Treatment = factor(Treatment, levels = c("Control", "Heat Stress", "Drought Stress")))
-
-plot_ly(
-  data = pca_data,
-  x = ~PC1,
-  y = ~PC2,
-  color = ~Treatment,
-  colors = c("Control" = "#003b71", "Heat Stress" = "#c5a059", "Drought Stress" = "#8c2d19"),
-  type = "scatter",
-  mode = "markers",
-  text = ~paste("Sample:", Sample, "<br>Treatment:", Treatment),
-  hoverinfo = "text"
-) %>%
-  layout(
-    title = "Simulated Multi-Omic PCA: Treatment Separation",
-    xaxis = list(title = "PC1 (42%)"),
-    yaxis = list(title = "PC2 (15%)")
-  )
+# Create interactive plot
+plot_ly(data = pca_data, x = ~PC1, y = ~PC2, color = ~Treatment,
+        colors = c("#003b71", "#8c2d19", "#c5a059"),
+        type = "scatter", mode = "markers",
+        marker = list(size = 9, opacity = 0.8, line = list(width = 1, color = 'white')),
+        hoverinfo = "text",
+        text = ~paste("<b>", Sample, "</b><br>Tratamiento:", Treatment, "<br>PC1:", round(PC1,2), "<br>PC2:", round(PC2,2))) %>%
+  layout(title = "PCA Simulado: Perfil Transcriptómico",
+         plot_bgcolor = "rgba(0,0,0,0)",
+         paper_bgcolor = "rgba(0,0,0,0)",
+         xaxis = list(title = "PC1 (42.5%)", showgrid = TRUE, gridcolor = "#e5e5e5"),
+         yaxis = list(title = "PC2 (15.3%)", showgrid = TRUE, gridcolor = "#e5e5e5"))
 ```
 
 ## Reproducibility Bridge
