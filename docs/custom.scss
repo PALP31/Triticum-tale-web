@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap");
+
+$primary: #c5a059; // Candeal Gold (keep aligned with docs/logo-placeholder.svg)
+$navbar-bg: #f8f9fa;
+$navbar-hl: #003b71; // PUC Blue (Pontificia Universidad Católica palette) for hover/focus
+
+h1,
+h2 {
+  color: $primary;
+  font-family: "Merriweather", "Georgia", serif;
+}
+
+.navbar .navbar-nav .nav-link:hover,
+.navbar .navbar-nav .nav-link:focus {
+  color: $navbar-hl;
+  text-decoration: underline;
+}
+
+.navbar .navbar-nav .nav-link:focus-visible {
+  outline: 2px solid $navbar-hl;
+  outline-offset: 2px;
+}
+
+.hero {
+  padding: 3rem 1.5rem;
+  margin: 1.5rem 0 2rem;
+  background: linear-gradient(135deg, rgba($primary, 0.15), rgba($navbar-bg, 1));
+  border-radius: 0.75rem;
+}
