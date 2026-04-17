@@ -1,16 +1,34 @@
-# Triticum Tale
+# 🌾 Triticum Tale: Data Art &amp; Explorador Multi-ómico
 
-**Triticum Tale** is a Data Art and interactive multi-omic explorer focused on revealing how *Triticum durum* responds to combined heat and drought stress.
+Este proyecto visualiza respuestas de *Triticum durum* frente a estrés térmico e hídrico con enfoque multi-ómico.
+Combina análisis en R y narrativa científica en Quarto para comunicar patrones biológicos complejos de forma interactiva.
 
-The project uses **R** for analysis, **Quarto** for web publishing, and **interactive visualizations** (including htmlwidgets/Plotly-style outputs) to communicate complex biological patterns in an accessible way.
+## 📁 Contenido del Repositorio
 
-## Repository structure
+| Módulo | Descripción | Herramientas Clave |
+| --- | --- | --- |
+| 01. Pipelines Ómicos | Scripts for normalization and differential analysis | `DESeq2`, `mixOmics`, `tidyverse` |
+| 02. Visualización Interactiva | Networks, heatmaps, and dynamic plots | `plotly`, `ggiraph` |
+| 03. Motor Quarto (Docs) | Website structure and data storytelling | `quarto` |
+| 04. Assets &amp; UI | Custom CSS and color palettes | `CSS`, `viridis` |
 
-- `analysis/` — heavy R analysis scripts (e.g., mixOmics, DESeq2 workflows)
-- `docs/` — Quarto website source files
-- `assets/` — interactive HTMLWidgets, plots, styles, and static assets
-- `.github/workflows/` — GitHub Actions workflows for CI/CD and publishing
+## 🛠️ Requisitos y Dependencias
 
-## Goal
+Instala estas dependencias para ejecutar análisis, visualizaciones y componentes narrativos del proyecto.
 
-Build a digital storytelling experience for multi-omic stress biology in durum wheat, combining scientific rigor with exploratory, web-native visualization.
+**📦 Manipulación y "Data Art"**
+- `tidyverse`
+- `plotly`
+- `patchwork`
+
+**🧬 Bioinformática**
+- `DESeq2`
+- `mixOmics`
+
+## 📖 Cómo usar este repositorio
+
+1. Clona este repositorio:
+
+```bash
+git clone https://github.com/PALP31/Triticum-tale-web.git
+```
