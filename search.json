@@ -26,5 +26,12 @@
     "title": "Triticum Tale",
     "section": "Explore the story",
     "text": "Explore the story\nBelow is a placeholder for an interactive Plotly visualization that will showcase mock stress-response patterns.\n\n# Placeholder for a future interactive Plotly graph\n# Example:\n# plotly::plot_ly(x = 1:10, y = rnorm(10), type = \"scatter\", mode = \"lines+markers\")"
+  },
+  {
+    "objectID": "index.html#reproducibility-bridge",
+    "href": "index.html#reproducibility-bridge",
+    "title": "Triticum Tale",
+    "section": "Reproducibility Bridge",
+    "text": "Reproducibility Bridge\n\n📊 Ver Pipeline Estadístico en GitHub\nTodas las visualizaciones están respaldadas por modelos lineales mixtos y análisis multi-ómicos reproducibles."
   }
 ]
