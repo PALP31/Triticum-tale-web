@@ -18,14 +18,14 @@
     "href": "index.html",
     "title": "Triticum Tale",
     "section": "",
-    "text": "Triticum Tale transforms multi-omic stress data into a clear scientific narrative of how Triticum durum adapts under heat and drought pressure.\nExplore Meta-QTL Explorer\nWelcome to Triticum Tale, a digital museum for multi-omic stress data in Triticum durum.\nThis project brings together transcriptomic, metabolomic, and integrative analyses to explore how durum wheat responds to heat and drought stress through interactive, narrative-driven visualizations."
+    "text": "Triticum Tale transforms multi-omic stress data into a clear scientific narrative of how Triticum durum adapts under heat and drought pressure.\nEXPLORAR ESTRÉS TÉRMICO\nWelcome to Triticum Tale, a digital museum for multi-omic stress data in Triticum durum.\nThis project brings together transcriptomic, metabolomic, and integrative analyses to explore how durum wheat responds to heat and drought stress through interactive, narrative-driven visualizations."
   },
   {
     "objectID": "index.html#explore-the-story",
     "href": "index.html#explore-the-story",
     "title": "Triticum Tale",
     "section": "Explore the story",
-    "text": "Explore the story\nBelow is a placeholder for an interactive Plotly visualization that will showcase mock stress-response patterns.\n\n# Placeholder for a future interactive Plotly graph\n# Example:\n# plotly::plot_ly(x = 1:10, y = rnorm(10), type = \"scatter\", mode = \"lines+markers\")"
+    "text": "Explore the story\nBelow is an interactive Plotly visualization that showcases simulated stress-response separation.\n\n\n\n\n\n\n\n\nFigure 1"
   },
   {
     "objectID": "index.html#reproducibility-bridge",
