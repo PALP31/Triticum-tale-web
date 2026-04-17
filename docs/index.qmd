@@ -32,5 +32,5 @@ Below is a placeholder for an interactive Plotly visualization that will showcas
 ::: {.text-center .mt-4 .mb-5}
 [📊 Ver Pipeline Estadístico en GitHub](https://github.com/PALP31/BioAgro-Stats){.btn .btn-outline-primary}
 
-*Todas las visualizaciones están respaldadas por modelos lineales mixtos y análisis multi-ómicos reproducibles.*
+*Todas las visualizaciones están respaldadas por modelos lineales mixtos y análisis multiómicos reproducibles.*
 :::
