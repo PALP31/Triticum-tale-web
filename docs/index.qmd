@@ -7,7 +7,7 @@ title: "Triticum Tale"
 
 **Triticum Tale** transforms multi-omic stress data into a clear scientific narrative of how *Triticum durum* adapts under heat and drought pressure.
 
-[Explore Meta-QTL Explorer](meta-qtl-explorer.qmd){.btn .btn-primary}
+[EXPLORAR ESTRÉS TÉRMICO](heat-stress.qmd){.btn .btn-primary}
 :::
 
 Welcome to **Triticum Tale**, a digital museum for multi-omic stress data in *Triticum durum*.
