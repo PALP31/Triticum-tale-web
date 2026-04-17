@@ -1,0 +1,30 @@
+[
+  {
+    "objectID": "drought-stress.html",
+    "href": "drought-stress.html",
+    "title": "Estrés Hídrico",
+    "section": "",
+    "text": "Cuando el agua escasea y el suelo se vuelve silencio, Triticum durum activa una estrategia precisa: reduce pérdidas, ajusta su crecimiento y dirige su energía hacia sobrevivir sin perder su identidad productiva. En el déficit hídrico, la planta escribe una narrativa de ahorro, equilibrio y perseverancia."
+  },
+  {
+    "objectID": "heat-stress.html",
+    "href": "heat-stress.html",
+    "title": "Estrés Térmico",
+    "section": "",
+    "text": "Cuando el calor aprieta y el aire vibra sobre el cultivo, Triticum durum no se rinde: acelera su defensa, reorganiza su metabolismo y protege lo esencial para sostener la vida. Bajo estrés térmico, cada espiga cuenta una historia de resistencia, donde la planta transforma el exceso de temperatura en una prueba de adaptación."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Triticum Tale",
+    "section": "",
+    "text": "Welcome to Triticum Tale, a digital museum for multi-omic stress data in Triticum durum.\nThis project brings together transcriptomic, metabolomic, and integrative analyses to explore how durum wheat responds to heat and drought stress through interactive, narrative-driven visualizations."
+  },
+  {
+    "objectID": "index.html#explore-the-story",
+    "href": "index.html#explore-the-story",
+    "title": "Triticum Tale",
+    "section": "Explore the story",
+    "text": "Explore the story\nBelow is a placeholder for an interactive Plotly visualization that will showcase mock stress-response patterns.\n\n# Placeholder for a future interactive Plotly graph\n# Example:\n# plotly::plot_ly(x = 1:10, y = rnorm(10), type = \"scatter\", mode = \"lines+markers\")"
+  }
+]
