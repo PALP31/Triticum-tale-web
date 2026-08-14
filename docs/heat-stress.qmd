@@ -1,5 +1,71 @@
 ---
-title: "Estrés Térmico"
+title: "🔥 Estrés Térmico en Trigo Candeal: Reprogramación Molecular"
+author: "Paúl Alexander López Peña"
+date: "`r Sys.Date()`"
+format:
+  html:
+    code-fold: true
+    code-tools: true
 ---
 
-Cuando el calor aprieta y el aire vibra sobre el cultivo, *Triticum durum* no se rinde: acelera su defensa, reorganiza su metabolismo y protege lo esencial para sostener la vida. Bajo estrés térmico, cada espiga cuenta una historia de resistencia, donde la planta transforma el exceso de temperatura en una prueba de adaptación.
+# Dinámica Transcriptómica frente a Golpes de Calor
+
+El trigo candeal (*Triticum durum*) es especialmente vulnerable a temperaturas superiores a 35°C durante la fase de **antesis (Z65)**, momento en el cual se define el número de granos por espiga y la viabilidad del polen.
+
+```{r}
+#| message: false
+#| warning: false
+
+library(plotly)
+library(tidyverse)
+
+# Simulación de datos de expresión génica diferencial (Volcano Plot)
+set.seed(888)
+n_genes <- 1200
+
+volcano_data <- data.frame(
+  Gene = paste0("TraesCS_", sprintf("%05d", 1:n_genes)),
+  Log2FC = c(rnorm(1000, 0, 1.2), rnorm(100, 3.5, 0.8), rnorm(100, -3.2, 0.9)),
+  p_val = c(runif(1000, 0.01, 1), rbeta(200, 0.1, 5) * 1e-4)
+) %>%
+  mutate(
+    negLog10P = -log10(pmax(p_val, 1e-15)),
+    Regulacion = case_when(
+      Log2FC > 1.5 & negLog10P > 2 ~ "Sobreexpresado (Up)",
+      Log2FC < -1.5 & negLog10P > 2 ~ "Reprimido (Down)",
+      TRUE ~ "Sin Cambio Significativo"
+    )
+  )
+
+p_volcano <- plot_ly(
+  data = volcano_data,
+  x = ~Log2FC,
+  y = ~negLog10P,
+  color = ~Regulacion,
+  colors = c("Sobreexpresado (Up)" = "#E74C3C", "Reprimido (Down)" = "#2E86AB", "Sin Cambio Significativo" = "#BDC3C7"),
+  type = "scatter",
+  mode = "markers",
+  marker = list(size = 6, opacity = 0.75),
+  text = ~paste(
+    "<b>Gen:</b>", Gene,
+    "<br><b>Log2 Fold-Change:</b>", round(Log2FC, 2),
+    "<br><b>-log10(p-valor):</b>", round(negLog10P, 2),
+    "<br><b>Estado:</b>", Regulacion
+  ),
+  hoverinfo = "text"
+) %>%
+  layout(
+    title = "<b>Volcano Plot: Expresión Génica Diferencial bajo Estrés Térmico (38°C vs 22°C)</b>",
+    xaxis = list(title = "Log2 Fold Change", gridcolor = "#e2e8f0"),
+    yaxis = list(title = "-log10 (p-valor ajustado)", gridcolor = "#e2e8f0"),
+    plot_bgcolor = "#fafafa"
+  )
+
+p_volcano
+```
+
+### Rutas Metabólicas Afectadas
+
+1. **Activación de Chaperonas Moleculares:** Aumento masivo de transcriptos de HSP70, HSP90 y sHSPs para evitar la agregación proteica citoplasmática.
+2. **Protección del Fotosistema II:** Transcripción activa de enzimas del ciclo de las xantofilas y ascorbato-glutatión.
+3. **Mantenimiento del Transporte de Azúcares:** Modulación de transportadores SUT y SWEET hacia el grano en desarrollo.

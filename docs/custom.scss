@@ -1,23 +1,77 @@
 /*-- scss:defaults --*/
-$primary: #c5a059; // Candeal Gold
-$navbar-bg: #ffffff;
-$navbar-fg: #003b71; // PUC Blue
+$primary: #008080;
+$secondary: #c5a059;
+$dark: #0d1117;
+$light: #f8fafc;
 $body-bg: #ffffff;
-$link-color: $primary;
+$body-color: #1e293b;
+$link-color: #008080;
+$font-family-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
 /*-- scss:rules --*/
-h1, h2, h3 {
-  color: $primary;
+h1, h2, h3, h4 {
   font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.02em;
 }
 
-.navbar {
-  border-bottom: 2px solid $primary;
+.hero-banner {
+  background: linear-gradient(135deg, #0d1117 0%, #1e293b 50%, #004d40 100%);
+  color: #ffffff;
+  padding: 3.5rem 2rem;
+  border-radius: 12px;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
-.hero-section {
-  background-color: rgba(197, 160, 89, 0.1);
-  padding: 2rem;
+.hero-banner h1 {
+  color: #c5a059;
+  font-size: 2.6rem;
+  margin-bottom: 1rem;
+}
+
+.hero-banner p {
+  font-size: 1.15rem;
+  color: #e2e8f0;
+  max-width: 800px;
+}
+
+.finding-card {
+  border: 1px solid #e2e8f0;
+  border-left: 5px solid #008080;
   border-radius: 8px;
+  padding: 1.5rem;
   margin-bottom: 2rem;
+  background-color: #f8fafc;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.finding-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.finding-title {
+  color: #008080;
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.badge-gold {
+  background-color: #c5a059;
+  color: white;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.badge-teal {
+  background-color: #008080;
+  color: white;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.85rem;
 }

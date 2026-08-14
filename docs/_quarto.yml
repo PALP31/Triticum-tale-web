@@ -1,19 +1,39 @@
 project:
   type: website
+  output-dir: _site
 
 website:
   title: "Triticum Tale"
+  description: "Data Art & Narrativa Científica de Respuestas Multi-Ómicas en Trigo Candeal"
+  site-url: "https://palp31.github.io/Triticum-tale-web"
   navbar:
-    logo: logo-placeholder.svg
+    background: "#0d1117"
+    foreground: "#ffffff"
     left:
       - href: index.qmd
-        text: Home
+        text: "🌾 Inicio & Historia"
       - href: heat-stress.qmd
-        text: Estrés Térmico
+        text: "🔥 Estrés Térmico"
       - href: drought-stress.qmd
-        text: Estrés Hídrico
+        text: "💧 Estrés Hídrico"
+    right:
+      - icon: github
+        href: "https://github.com/PALP31/Triticum-tale-web"
+        aria-label: GitHub
+      - icon: box-seam
+        text: "easyModels"
+        href: "https://github.com/PALP31/easyModels"
+      - icon: bar-chart-line
+        text: "BioAgro-Stats"
+        href: "https://github.com/PALP31/BioAgro-Stats"
 
 format:
   html:
     theme: [lux, custom.scss]
     toc: true
+    toc-title: "En esta página"
+    toc-depth: 3
+    code-fold: true
+    code-tools: true
+    smooth-scroll: true
+    page-layout: full

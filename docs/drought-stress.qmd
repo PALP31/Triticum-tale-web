@@ -1,5 +1,66 @@
 ---
-title: "Estrés Hídrico"
+title: "💧 Estrés Hídrico: Ajuste Osmótico y Homeostasis Ionómica"
+author: "Paúl Alexander López Peña"
+date: "`r Sys.Date()`"
+format:
+  html:
+    code-fold: true
+    code-tools: true
 ---
 
-Cuando el agua escasea y el suelo se vuelve silencio, *Triticum durum* activa una estrategia precisa: reduce pérdidas, ajusta su crecimiento y dirige su energía hacia sobrevivir sin perder su identidad productiva. En el déficit hídrico, la planta escribe una narrativa de ahorro, equilibrio y perseverancia.
+# Mecanismos de Ajuste Osmótico en Secano
+
+Bajo déficit hídrico, el trigo candeal (*Triticum durum*) activa rutas de biosíntesis de solutos compatibles como **prolina** y regula la absorción selectiva de nutrientes minerales en la rizósfera.
+
+```{r}
+#| message: false
+#| warning: false
+
+library(plotly)
+library(tidyverse)
+
+# Simulación de respuesta dinámica de prolina vs potencial hídrico foliar
+set.seed(999)
+n_obs <- 50
+
+drought_data <- data.frame(
+  Potencial_Hidrico = seq(-0.5, -3.0, length.out = n_obs),
+  Genotipo_Tol = 2 + (abs(seq(-0.5, -3.0, length.out = n_obs))^2.2) * 2.8 + rnorm(n_obs, 0, 0.8),
+  Genotipo_Sen = 2 + (abs(seq(-0.5, -3.0, length.out = n_obs))^1.4) * 1.2 + rnorm(n_obs, 0, 0.6)
+)
+
+p_drought <- plot_ly(data = drought_data) %>%
+  add_trace(
+    x = ~Potencial_Hidrico,
+    y = ~Genotipo_Tol,
+    name = "Genotipo Tolerante (G1)",
+    type = "scatter",
+    mode = "lines+markers",
+    line = list(color = "#00A88F", width = 3),
+    marker = list(size = 7)
+  ) %>%
+  add_trace(
+    x = ~Potencial_Hidrico,
+    y = ~Genotipo_Sen,
+    name = "Genotipo Sensible (G2)",
+    type = "scatter",
+    mode = "lines+markers",
+    line = list(color = "#E65100", width = 3, dash = "dash"),
+    marker = list(size = 7)
+  ) %>%
+  layout(
+    title = "<b>Acumulación de Prolina en Respuesta al Descenso del Potencial Hídrico (\u03A8w)</b>",
+    xaxis = list(title = "Potencial Hídrico Foliar \u03A8w (MPa)", gridcolor = "#e2e8f0"),
+    yaxis = list(title = "Contenido de Prolina Libre (\u03BCmol/g MF)", gridcolor = "#e2e8f0"),
+    legend = list(orientation = "h", x = 0.2, y = -0.2),
+    plot_bgcolor = "#fafafa"
+  )
+
+p_drought
+```
+
+### Factores Determinantes de la Tolerancia a Sequía
+
+1. **Ajuste Osmótico Activo:** El genotipo tolerante acumula hasta **3 veces más prolina** que el sensible cuando el potencial hídrico desciende por debajo de $-2.0\text{ MPa}$.
+2. **Eficiencia en el Uso del Agua (WUE):** Coordinación estomática para maximizar la asimilación de $\text{CO}_2$ minimizando la transpiración.
+3. **Mantenimiento del Turgor Celular:** Preservación de la presión de turgencia $\Psi_p$ en hojas bandera.
