@@ -165,6 +165,12 @@ Mientras el genotipo sensible sufre una pérdida del **61% en rendimiento de gra
 
 ---
 
+## 🌾 Proyección al Fitomejoramiento Asistido por Marcadores
+
+La integración de datos multi-ómicos permite identificar regiones genómicas clave (**QTLs y Meta-QTLs**) asociadas a la estabilidad de membrana y retención de $K^+$, acelerando el desarrollo de marcadores moleculares de tipo **KASP** para programas de mejoramiento genético de trigo candeal resiliente al cambio climático.
+
+---
+
 ## 🛠️ Flujo de Trabajo y Reproducibilidad
 
 Todo el análisis de este portal fue desarrollado bajo estándares de ciencia abierta y reproducibilidad computacional:
@@ -182,13 +188,3 @@ Triticum-tale-web/
 │   └── drought-stress.qmd      # Desglose fisiológico e ionómico
 └── assets/                     # Estilos SCSS y Data Art
 ```
-
----
-
-## 🤖 Declaración de Uso de IA Generativa (Código de Honor UC)
-
-En cumplimiento con las directrices académicas y de integridad de la Pontificia Universidad Católica de Chile:
-
-- **Herramientas de IA utilizadas:** Claude 3.7 Sonnet / Google Gemini vía Antigravity CLI.
-- **Propósito:** Asistencia en la modularización de código en R, estructuración estética de componentes SCSS en Quarto, y optimización de sintaxis en gráficos interactivos de Plotly.
-- **Validación Humana:** Todo el código fue inspeccionado, ejecutado localmente, corregido y validado con datos biológicos reales por el autor.
