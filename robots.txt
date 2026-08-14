@@ -1,1 +1,1 @@
-Sitemap: https://PALP31.github.io/Triticum-tale-web/sitemap.xml
+Sitemap: https://palp31.github.io/Triticum-tale-web/sitemap.xml

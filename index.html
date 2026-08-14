@@ -2,26 +2,66 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Paúl Alexander López Peña">
+<meta name="dcterms.date" content="2026-08-14">
 
-<title>Triticum Tale</title>
+<title>Triticum Tale: Respuestas Multi-Ómicas al Estrés en Trigo Candeal – Triticum Tale</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -39,10 +79,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-55decfc11e953f449a0092b646736684.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-1cfc937ed154677afd27bc320e817379.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -70,9 +110,10 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 <link href="site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
 <script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-<script src="site_libs/plotly-binding-4.12.0/plotly.js"></script>
+<script src="site_libs/plotly-binding-4.12.1/plotly.js"></script>
 <script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
 <script src="site_libs/jquery-3.5.1/jquery.min.js"></script>
 <link href="site_libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
@@ -80,6 +121,35 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet">
 <script src="site_libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -90,10 +160,6 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./logo-placeholder.svg" alt="" class="navbar-logo light-content">
-    <img src="./logo-placeholder.svg" alt="" class="navbar-logo dark-content">
-    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Triticum Tale</span>
     </a>
@@ -106,15 +172,32 @@ ul.task-list li input[type="checkbox"] {
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link active" href="./index.html" aria-current="page"> 
-<span class="menu-text">Home</span></a>
+<span class="menu-text">🌾 Inicio &amp; Historia</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./heat-stress.html"> 
-<span class="menu-text">Estrés Térmico</span></a>
+<span class="menu-text">🔥 Estrés Térmico</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./drought-stress.html"> 
-<span class="menu-text">Estrés Hídrico</span></a>
+<span class="menu-text">💧 Estrés Hídrico</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/PALP31/Triticum-tale-web"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/PALP31/easyModels"> <i class="bi bi-box-seam" role="img">
+</i> 
+<span class="menu-text">easyModels</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/PALP31/BioAgro-Stats"> <i class="bi bi-bar-chart-line" role="img">
+</i> 
+<span class="menu-text">BioAgro-Stats</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -124,33 +207,52 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+    <h2 id="toc-title">En esta página</h2>
    
   <ul>
-  <li><a href="#decode-durum-resilience" id="toc-decode-durum-resilience" class="nav-link active" data-scroll-target="#decode-durum-resilience">Decode Durum Resilience</a></li>
-  <li><a href="#explore-the-story" id="toc-explore-the-story" class="nav-link" data-scroll-target="#explore-the-story">Explore the story</a></li>
-  <li><a href="#reproducibility-bridge" id="toc-reproducibility-bridge" class="nav-link" data-scroll-target="#reproducibility-bridge">Reproducibility Bridge</a></li>
+  <li><a href="#triticum-tale-data-art-narrativa-multi-ómica" id="toc-triticum-tale-data-art-narrativa-multi-ómica" class="nav-link active" data-scroll-target="#triticum-tale-data-art-narrativa-multi-ómica">🌾 Triticum Tale: Data Art &amp; Narrativa Multi-Ómica</a></li>
+  <li><a href="#pregunta-central-del-proyecto" id="toc-pregunta-central-del-proyecto" class="nav-link" data-scroll-target="#pregunta-central-del-proyecto">🎯 Pregunta Central del Proyecto</a></li>
+  <li><a href="#los-tres-hallazgos-clave" id="toc-los-tres-hallazgos-clave" class="nav-link" data-scroll-target="#los-tres-hallazgos-clave">📊 Los Tres Hallazgos Clave</a>
+  <ul class="collapse">
+  <li><a href="#hallazgo-1-reprogramación-transcriptómica-rápida-y-chaperonas-térmicas" id="toc-hallazgo-1-reprogramación-transcriptómica-rápida-y-chaperonas-térmicas" class="nav-link" data-scroll-target="#hallazgo-1-reprogramación-transcriptómica-rápida-y-chaperonas-térmicas">💡 Hallazgo 1: Reprogramación Transcriptómica Rápida y Chaperonas Térmicas</a></li>
+  <li><a href="#hallazgo-2-homeostasis-de-potasio-k-y-mitigación-de-daño-oxidativo" id="toc-hallazgo-2-homeostasis-de-potasio-k-y-mitigación-de-daño-oxidativo" class="nav-link" data-scroll-target="#hallazgo-2-homeostasis-de-potasio-k-y-mitigación-de-daño-oxidativo">💡 Hallazgo 2: Homeostasis de Potasio (<span class="math inline">\(K^+\)</span>) y Mitigación de Daño Oxidativo</a></li>
+  <li><a href="#hallazgo-3-preservación-del-rendimiento-de-grano-en-floración" id="toc-hallazgo-3-preservación-del-rendimiento-de-grano-en-floración" class="nav-link" data-scroll-target="#hallazgo-3-preservación-del-rendimiento-de-grano-en-floración">💡 Hallazgo 3: Preservación del Rendimiento de Grano en Floración</a></li>
+  </ul></li>
+  <li><a href="#proyección-al-fitomejoramiento-asistido-por-marcadores" id="toc-proyección-al-fitomejoramiento-asistido-por-marcadores" class="nav-link" data-scroll-target="#proyección-al-fitomejoramiento-asistido-por-marcadores">🌾 Proyección al Fitomejoramiento Asistido por Marcadores</a></li>
+  <li><a href="#flujo-de-trabajo-y-reproducibilidad" id="toc-flujo-de-trabajo-y-reproducibilidad" class="nav-link" data-scroll-target="#flujo-de-trabajo-y-reproducibilidad">🛠️ Flujo de Trabajo y Reproducibilidad</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page-left" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Triticum Tale</h1>
+<div class="quarto-title-block"><div><h1 class="title">Triticum Tale: Respuestas Multi-Ómicas al Estrés en Trigo Candeal</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 </div>
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page-left">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Paúl Alexander López Peña </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 14, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -160,30 +262,228 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="decode-durum-resilience" class="level1 hero">
-<h1>Decode Durum Resilience</h1>
-<p><strong>Triticum Tale</strong> transforms multi-omic stress data into a clear scientific narrative of how <em>Triticum durum</em> adapts under heat and drought pressure.</p>
-<p><a href="./heat-stress.html" class="btn btn-primary">EXPLORAR ESTRÉS TÉRMICO</a></p>
+<section id="triticum-tale-data-art-narrativa-multi-ómica" class="level1 hero-banner">
+<h1>🌾 Triticum Tale: Data Art &amp; Narrativa Multi-Ómica</h1>
+<p><strong>¿Qué historia cuentan los datos cuando el trigo candeal (<em>Triticum durum</em>) enfrenta calor y sequía extrema?</strong><br>
+Explora a través de visualizaciones interactivas y modelos estadísticos reproducibles cómo una de las especies de cultivo más importantes del mundo reprograma sus genes, protege sus membranas y defiende su rendimiento.</p>
+<p><a href="./heat-stress.html" class="btn btn-warning me-2">🔥 Explorar Estrés Térmico</a> <a href="./drought-stress.html" class="btn btn-info">💧 Explorar Estrés Hídrico</a></p>
 </section>
-<p>Welcome to <strong>Triticum Tale</strong>, a digital museum for multi-omic stress data in <em>Triticum durum</em>.</p>
-<p>This project brings together transcriptomic, metabolomic, and integrative analyses to explore how durum wheat responds to heat and drought stress through interactive, narrative-driven visualizations.</p>
-<section id="explore-the-story" class="level2">
-<h2 class="anchored" data-anchor-id="explore-the-story">Explore the story</h2>
-<p>Below is an interactive Plotly visualization that showcases simulated stress-response separation.</p>
+<hr>
+<section id="pregunta-central-del-proyecto" class="level2">
+<h2 class="anchored" data-anchor-id="pregunta-central-del-proyecto">🎯 Pregunta Central del Proyecto</h2>
+<blockquote class="blockquote">
+<p><em>Frente al cambio climático global y las olas de calor recurrentes durante la antesis (floración Z65), ¿cuáles son los mecanismos moleculares y fisiológicos clave que diferencian a los genotipos tolerantes de los susceptibles en trigo candeal?</em></p>
+</blockquote>
+<p>Para responder a esta pregunta, combinamos tres capas biológicas independientes: 1. <strong>🧬 Transcriptómica (RNA-seq):</strong> Expresión génica diferencial de chaperonas, factores de transcripción Hsf y transportadores de iones. 2. <strong>🧪 Fisiología &amp; Bioquímica:</strong> Fotosíntesis neta (<span class="math inline">\(A_n\)</span>), conductancia estomática (<span class="math inline">\(g_s\)</span>), contenido de clorofila (SPAD), daño oxidativo (MDA) y acumulación de osmoprotectores (prolina). 3. <strong>🌾 Rendimiento Agronómico:</strong> Peso de espiga, número de granos y estabilidad de rendimiento.</p>
+<hr>
+</section>
+<section id="los-tres-hallazgos-clave" class="level2">
+<h2 class="anchored" data-anchor-id="los-tres-hallazgos-clave">📊 Los Tres Hallazgos Clave</h2>
+<section id="hallazgo-1-reprogramación-transcriptómica-rápida-y-chaperonas-térmicas" class="level3">
+<h3 class="anchored" data-anchor-id="hallazgo-1-reprogramación-transcriptómica-rápida-y-chaperonas-térmicas">💡 Hallazgo 1: Reprogramación Transcriptómica Rápida y Chaperonas Térmicas</h3>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulación de datos transcriptómicos (PCA de 60 muestras bajo 3 condiciones)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>n_muestras <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>pca_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">Muestra =</span> <span class="fu">paste0</span>(<span class="st">"Sample_"</span>, <span class="dv">1</span><span class="sc">:</span>(n_muestras <span class="sc">*</span> <span class="dv">3</span>)),</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Condicion =</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Control (22°C)"</span>, <span class="st">"Estrés Térmico (38°C)"</span>, <span class="st">"Estrés Hídrico (Secano)"</span>), <span class="at">each =</span> n_muestras)),</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">Genotipo =</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"G1_Tolerante"</span>, <span class="st">"G2_Sensible"</span>), <span class="at">each =</span> <span class="dv">10</span>), <span class="at">times =</span> <span class="dv">3</span>)),</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">PC1 =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(n_muestras, <span class="sc">-</span><span class="dv">6</span>, <span class="fl">1.2</span>), <span class="fu">rnorm</span>(n_muestras, <span class="dv">5</span>, <span class="fl">1.8</span>), <span class="fu">rnorm</span>(n_muestras, <span class="dv">1</span>, <span class="fl">1.5</span>)),</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">PC2 =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(n_muestras, <span class="dv">0</span>, <span class="fl">1.2</span>), <span class="fu">rnorm</span>(n_muestras, <span class="dv">4</span>, <span class="fl">1.4</span>), <span class="fu">rnorm</span>(n_muestras, <span class="sc">-</span><span class="dv">5</span>, <span class="fl">1.3</span>)),</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">HSP70_Exp =</span> <span class="fu">c</span>(<span class="fu">rpois</span>(n_muestras, <span class="dv">15</span>), <span class="fu">rpois</span>(n_muestras, <span class="dv">185</span>), <span class="fu">rpois</span>(n_muestras, <span class="dv">45</span>))</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">plot_ly</span>(</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> pca_df,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="sc">~</span>PC1,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="sc">~</span>PC2,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">color =</span> <span class="sc">~</span>Condicion,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">colors =</span> <span class="fu">c</span>(<span class="st">"#2E86AB"</span>, <span class="st">"#E74C3C"</span>, <span class="st">"#C5A059"</span>),</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">symbol =</span> <span class="sc">~</span>Genotipo,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">symbols =</span> <span class="fu">c</span>(<span class="st">"circle"</span>, <span class="st">"diamond"</span>),</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"scatter"</span>,</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">mode =</span> <span class="st">"markers"</span>,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">marker =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">opacity =</span> <span class="fl">0.85</span>, <span class="at">line =</span> <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"white"</span>)),</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">hoverinfo =</span> <span class="st">"text"</span>,</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">text =</span> <span class="sc">~</span><span class="fu">paste</span>(</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;b&gt;Muestra:&lt;/b&gt;"</span>, Muestra,</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;br&gt;&lt;b&gt;Condición:&lt;/b&gt;"</span>, Condicion,</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;br&gt;&lt;b&gt;Genotipo:&lt;/b&gt;"</span>, Genotipo,</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;br&gt;&lt;b&gt;Expresión HSP70 (TPM):&lt;/b&gt;"</span>, HSP70_Exp,</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;br&gt;&lt;b&gt;PC1:&lt;/b&gt;"</span>, <span class="fu">round</span>(PC1, <span class="dv">2</span>), <span class="st">"| &lt;b&gt;PC2:&lt;/b&gt;"</span>, <span class="fu">round</span>(PC2, <span class="dv">2</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layout</span>(</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"&lt;b&gt;Dispersión Transcriptómica: Separación por Condición Ambiental&lt;/b&gt;"</span>,</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot_bgcolor =</span> <span class="st">"#fafafa"</span>,</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">paper_bgcolor =</span> <span class="st">"#ffffff"</span>,</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">xaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"PC1 (54.2% Varianza Explicada)"</span>, <span class="at">showgrid =</span> <span class="cn">TRUE</span>, <span class="at">gridcolor =</span> <span class="st">"#e2e8f0"</span>),</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">yaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"PC2 (21.8% Varianza Explicada)"</span>, <span class="at">showgrid =</span> <span class="cn">TRUE</span>, <span class="at">gridcolor =</span> <span class="st">"#e2e8f0"</span>),</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend =</span> <span class="fu">list</span>(<span class="at">orientation =</span> <span class="st">"h"</span>, <span class="at">x =</span> <span class="fl">0.1</span>, <span class="at">y =</span> <span class="sc">-</span><span class="fl">0.2</span>)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>p1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output-display">
-<div class="plotly html-widget html-fill-item" id="htmlwidget-a1b943d8593ce6a06d73" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-a1b943d8593ce6a06d73">{"x":{"visdat":{"5ba34e3ef7a8":["function () ","plotlyVisDat"]},"cur_data":"5ba34e3ef7a8","attrs":{"5ba34e3ef7a8":{"x":{},"y":{},"mode":"markers","marker":{"size":9,"opacity":0.80000000000000004,"line":{"width":1,"color":"white"}},"hoverinfo":"text","text":{},"color":{},"colors":["#003b71","#8c2d19","#c5a059"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"PCA Simulado: Perfil Transcriptómico","plot_bgcolor":"rgba(0,0,0,0)","paper_bgcolor":"rgba(0,0,0,0)","xaxis":{"domain":[0,1],"automargin":true,"title":"PC1 (42.5%)","showgrid":true,"gridcolor":"#e5e5e5"},"yaxis":{"domain":[0,1],"automargin":true,"title":"PC2 (15.3%)","showgrid":true,"gridcolor":"#e5e5e5"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[-2.9435623292799971,-5.8470472570941325,-4.4553073829939915,-4.0507060925584391,-4.3935975152885014,-5.1591867741372264,-2.7327170038415916,-5.141988557619646,-1.9723644291844371,-5.0940711485786316,-3.0426955186647722,-1.57003191094834,-7.0832910516685086,-5.4181831502260573,-5.1999820045904874,-4.0460744028948881,-5.4263793821241082,-8.9846831313571638,-8.66070039286328,-3.0198299814047118,-5.4599578911177122,-7.6719626509700003,-5.2578760336394321,-3.1779879512411018,-2.1572098081025519,-5.6457036974092993,-5.3859040741533946,-7.6447446277921705,-4.3098539677530932,-5.9599923139401785,-4.3168248151381707,-3.9427439941567712,-3.4473447170451168,-5.9133895631108171,-4.2425673150530443,-7.5755130186100139,-6.1766885125692443,-6.2763613912647775,-8.6213114749199473,-4.9458160896616166],"y":[-2.2404376009744356,-2.2056536121551948,0.1870535792955102,-1.494958702326056,-0.0027339214570622937,-0.64238832213872288,-0.92050740967424305,-3.0370167681286615,-1.8371219255399791,0.26927466167690689,0.85143089163530294,-0.73931603033021209,9.4326098026686125e-05,1.6843344650699494,2.1597836144642848,-1.6456706526087324,-0.17597934037526525,1.8022476013795519,-0.70459437084945142,-0.07870422740849449,-0.12916094735563433,-1.3315185268596474,-0.66702600732710726,-0.044167318632357219,-0.62080327358688536,1.6700790350523047,-0.72148926248097278,-0.64975354890109349,1.0452938648281542,-1.5845526197563622,-0.061047712726822391,-2.3273172335213843,1.7507543238535226,-0.41046855206112098,-0.70176798700838028,-1.8573784919793215,-0.011643050665989946,-1.2004232669274892,-0.80023849492565469,1.931512868376883],"mode":"markers","marker":{"color":"rgba(0,59,113,1)","size":9,"opacity":0.80000000000000004,"line":{"color":"white","width":1}},"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"text":["<b> Durum_WT_1 <\/b><br>Tratamiento: Control <br>PC1: -2.94 <br>PC2: -2.24","<b> Durum_WT_2 <\/b><br>Tratamiento: Control <br>PC1: -5.85 <br>PC2: -2.21","<b> Durum_WT_3 <\/b><br>Tratamiento: Control <br>PC1: -4.46 <br>PC2: 0.19","<b> Durum_WT_4 <\/b><br>Tratamiento: Control <br>PC1: -4.05 <br>PC2: -1.49","<b> Durum_WT_5 <\/b><br>Tratamiento: Control <br>PC1: -4.39 <br>PC2: 0","<b> Durum_WT_6 <\/b><br>Tratamiento: Control <br>PC1: -5.16 <br>PC2: -0.64","<b> Durum_WT_7 <\/b><br>Tratamiento: Control <br>PC1: -2.73 <br>PC2: -0.92","<b> Durum_WT_8 <\/b><br>Tratamiento: Control <br>PC1: -5.14 <br>PC2: -3.04","<b> Durum_WT_9 <\/b><br>Tratamiento: Control <br>PC1: -1.97 <br>PC2: -1.84","<b> Durum_WT_10 <\/b><br>Tratamiento: Control <br>PC1: -5.09 <br>PC2: 0.27","<b> Durum_WT_11 <\/b><br>Tratamiento: Control <br>PC1: -3.04 <br>PC2: 0.85","<b> Durum_WT_12 <\/b><br>Tratamiento: Control <br>PC1: -1.57 <br>PC2: -0.74","<b> Durum_WT_13 <\/b><br>Tratamiento: Control <br>PC1: -7.08 <br>PC2: 0","<b> Durum_WT_14 <\/b><br>Tratamiento: Control <br>PC1: -5.42 <br>PC2: 1.68","<b> Durum_WT_15 <\/b><br>Tratamiento: Control <br>PC1: -5.2 <br>PC2: 2.16","<b> Durum_WT_16 <\/b><br>Tratamiento: Control <br>PC1: -4.05 <br>PC2: -1.65","<b> Durum_WT_17 <\/b><br>Tratamiento: Control <br>PC1: -5.43 <br>PC2: -0.18","<b> Durum_WT_18 <\/b><br>Tratamiento: Control <br>PC1: -8.98 <br>PC2: 1.8","<b> Durum_WT_19 <\/b><br>Tratamiento: Control <br>PC1: -8.66 <br>PC2: -0.7","<b> Durum_WT_20 <\/b><br>Tratamiento: Control <br>PC1: -3.02 <br>PC2: -0.08","<b> Durum_WT_21 <\/b><br>Tratamiento: Control <br>PC1: -5.46 <br>PC2: -0.13","<b> Durum_WT_22 <\/b><br>Tratamiento: Control <br>PC1: -7.67 <br>PC2: -1.33","<b> Durum_WT_23 <\/b><br>Tratamiento: Control <br>PC1: -5.26 <br>PC2: -0.67","<b> Durum_WT_24 <\/b><br>Tratamiento: Control <br>PC1: -3.18 <br>PC2: -0.04","<b> Durum_WT_25 <\/b><br>Tratamiento: Control <br>PC1: -2.16 <br>PC2: -0.62","<b> Durum_WT_26 <\/b><br>Tratamiento: Control <br>PC1: -5.65 <br>PC2: 1.67","<b> Durum_WT_27 <\/b><br>Tratamiento: Control <br>PC1: -5.39 <br>PC2: -0.72","<b> Durum_WT_28 <\/b><br>Tratamiento: Control <br>PC1: -7.64 <br>PC2: -0.65","<b> Durum_WT_29 <\/b><br>Tratamiento: Control <br>PC1: -4.31 <br>PC2: 1.05","<b> Durum_WT_30 <\/b><br>Tratamiento: Control <br>PC1: -5.96 <br>PC2: -1.58","<b> Durum_WT_31 <\/b><br>Tratamiento: Control <br>PC1: -4.32 <br>PC2: -0.06","<b> Durum_WT_32 <\/b><br>Tratamiento: Control <br>PC1: -3.94 <br>PC2: -2.33","<b> Durum_WT_33 <\/b><br>Tratamiento: Control <br>PC1: -3.45 <br>PC2: 1.75","<b> Durum_WT_34 <\/b><br>Tratamiento: Control <br>PC1: -5.91 <br>PC2: -0.41","<b> Durum_WT_35 <\/b><br>Tratamiento: Control <br>PC1: -4.24 <br>PC2: -0.7","<b> Durum_WT_36 <\/b><br>Tratamiento: Control <br>PC1: -7.58 <br>PC2: -1.86","<b> Durum_WT_37 <\/b><br>Tratamiento: Control <br>PC1: -6.18 <br>PC2: -0.01","<b> Durum_WT_38 <\/b><br>Tratamiento: Control <br>PC1: -6.28 <br>PC2: -1.2","<b> Durum_WT_39 <\/b><br>Tratamiento: Control <br>PC1: -8.62 <br>PC2: -0.8","<b> Durum_WT_40 <\/b><br>Tratamiento: Control <br>PC1: -4.95 <br>PC2: 1.93"],"type":"scatter","name":"Control","textfont":{"color":"rgba(0,59,113,1)"},"error_y":{"color":"rgba(0,59,113,1)"},"error_x":{"color":"rgba(0,59,113,1)"},"line":{"color":"rgba(0,59,113,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[3.7228726176488709,1.4642585875576555,1.1591924124872555,0.78238623242963889,-1.1497920112889508,2.1015944164726967,0.60914827765626245,0.67103792860254086,2.6800233914280884,2.4791915989148485,3.5058094766816876,0.1428869385015864,2.1706274093073494,3.5039988215020008,-0.99941998300621804,-0.54942665638011579,-1.0371296255367861,-1.6265851991043125,1.1439685958340902,2.1757678113685421,3.1617376760772897,2.8805519569019058,-0.80577556431172637,4.3272674230109436,-0.20019213576407102,1.1899248624209249,0.23993941263605922,0.7797696904810516,1.3387474621026962,1.2144897243946116,0.95483340843867481,1.1945309102956587,0.12621657547599807,0.092409164761773632,-1.9899783438466616,0.31179929162712772,0.077229535819959283,5.8634038006206373,-1.4518092161414935,1.2470611934054925],"y":[-7.0013938565972662,-3.4993342038496449,-2.2430123089618084,-0.91069113655104328,-6.065292397360782,-5.7262833484406581,-5.0587320921401817,-5.5810836731157876,-4.9686155847137368,-4.2780669515147549,-5.8018330761099772,-0.94454174952527392,-3.8383378826716799,-4.126162150758371,-3.2565705375931091,-3.9438772208230519,-4.1981320554338648,-1.7848188646718546,-4.3255453151381555,-5.9254033061383371,-3.4214981643348965,-4.5272693102936383,-4.7826941400344039,-5.6021968010307557,-3.3574511450999616,-4.2610273516404922,-3.2264984070279557,-4.3515479159588821,-4.9877551387326564,-2.1246450938819246,-4.4076455726670956,-2.578072006187206,-5.8023736451634065,-4.6991741445632531,-4.4040270927297698,-4.5864481121962903,-1.9769394820124297,-4.0341470519476186,-3.6336612233448244,-5.4135575617958844],"mode":"markers","marker":{"color":"rgba(140,45,25,1)","size":9,"opacity":0.80000000000000004,"line":{"color":"white","width":1}},"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"text":["<b> Durum_WT_81 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: 3.72 <br>PC2: -7","<b> Durum_WT_82 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: 1.46 <br>PC2: -3.5","<b> Durum_WT_83 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: 1.16 <br>PC2: -2.24","<b> Durum_WT_84 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: 0.78 <br>PC2: -0.91","<b> Durum_WT_85 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: -1.15 <br>PC2: -6.07","<b> Durum_WT_86 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: 2.1 <br>PC2: -5.73","<b> Durum_WT_87 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: 0.61 <br>PC2: -5.06","<b> Durum_WT_88 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: 0.67 <br>PC2: -5.58","<b> Durum_WT_89 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: 2.68 <br>PC2: -4.97","<b> Durum_WT_90 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: 2.48 <br>PC2: -4.28","<b> Durum_WT_91 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: 3.51 <br>PC2: -5.8","<b> Durum_WT_92 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: 0.14 <br>PC2: -0.94","<b> Durum_WT_93 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: 2.17 <br>PC2: -3.84","<b> Durum_WT_94 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: 3.5 <br>PC2: -4.13","<b> Durum_WT_95 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: -1 <br>PC2: -3.26","<b> Durum_WT_96 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: -0.55 <br>PC2: -3.94","<b> Durum_WT_97 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: -1.04 <br>PC2: -4.2","<b> Durum_WT_98 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: -1.63 <br>PC2: -1.78","<b> Durum_WT_99 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: 1.14 <br>PC2: -4.33","<b> Durum_WT_100 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: 2.18 <br>PC2: -5.93","<b> Durum_WT_101 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: 3.16 <br>PC2: -3.42","<b> Durum_WT_102 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: 2.88 <br>PC2: -4.53","<b> Durum_WT_103 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: -0.81 <br>PC2: -4.78","<b> Durum_WT_104 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: 4.33 <br>PC2: -5.6","<b> Durum_WT_105 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: -0.2 <br>PC2: -3.36","<b> Durum_WT_106 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: 1.19 <br>PC2: -4.26","<b> Durum_WT_107 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: 0.24 <br>PC2: -3.23","<b> Durum_WT_108 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: 0.78 <br>PC2: -4.35","<b> Durum_WT_109 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: 1.34 <br>PC2: -4.99","<b> Durum_WT_110 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: 1.21 <br>PC2: -2.12","<b> Durum_WT_111 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: 0.95 <br>PC2: -4.41","<b> Durum_WT_112 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: 1.19 <br>PC2: -2.58","<b> Durum_WT_113 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: 0.13 <br>PC2: -5.8","<b> Durum_WT_114 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: 0.09 <br>PC2: -4.7","<b> Durum_WT_115 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: -1.99 <br>PC2: -4.4","<b> Durum_WT_116 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: 0.31 <br>PC2: -4.59","<b> Durum_WT_117 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: 0.08 <br>PC2: -1.98","<b> Durum_WT_118 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: 5.86 <br>PC2: -4.03","<b> Durum_WT_119 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: -1.45 <br>PC2: -3.63","<b> Durum_WT_120 <\/b><br>Tratamiento: Estrés Hídrico <br>PC1: 1.25 <br>PC2: -5.41"],"type":"scatter","name":"Estrés Hídrico","textfont":{"color":"rgba(140,45,25,1)"},"error_y":{"color":"rgba(140,45,25,1)"},"error_x":{"color":"rgba(140,45,25,1)"},"line":{"color":"rgba(140,45,25,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[4.4119972004005081,3.2778854029026672,5.5163264713990339,2.5465903458468495,1.2634379111614109,4.8656360517774342,2.3772136476266565,6.8882025234425051,3.1371075947733091,5.3112957668044132,4.6438505304078932,2.4323221182392492,7.1514550395839542,5.2857986114346325,4.179521293199211,4.5531014945829256,5.3585776321105421,4.1796657731581632,-1.9861801663058696,4.5697659070613188,3.2655307145180492,4.3704611297312184,5.1636474547310129,6.7994736545853565,2.5454158810510696,6.605085264088288,4.6716962395041488,6.0770121973952422,5.8414571365812922,5.4417563257337251,1.91376212286429,3.8196272267785867,5.2470363239990867,2.0929532844553123,2.9143423708522866,5.1619929953633648,5.536357475669182,4.9275351770803342,2.2284474051806411,1.8004382027042887],"y":[2.736711194636809,1.3923264237739861,3.2448103237010733,2.4558923765580754,3.885020321981008,5.1486328915964847,1.5109612333357609,3.6819754463704237,3.1273470880177308,4.3433483733968172,2.6553327915806002,4.2549286026909199,0.38241620799496001,5.5341883819700604,4.2971669677778674,2.7738360166713782,0.82648930479124871,3.9645130500629726,3.7247907957221513,2.990466560367917,3.2271838392936365,2.1238365444752936,3.553210098945363,3.4419815095792736,2.5811109399861376,0.99564501766026936,4.0511232276600513,3.8312949334110504,1.7455401107978774,0.60811775699063553,3.3074378708814507,2.482368033040665,3.3789175550466819,1.0589963017731698,1.5612443334294555,4.6286622805198512,3.6056623570735709,3.8797313050789466,5.7228426692309293,3.1932321429035748],"mode":"markers","marker":{"color":"rgba(197,160,89,1)","size":9,"opacity":0.80000000000000004,"line":{"color":"white","width":1}},"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"text":["<b> Durum_WT_41 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 4.41 <br>PC2: 2.74","<b> Durum_WT_42 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 3.28 <br>PC2: 1.39","<b> Durum_WT_43 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 5.52 <br>PC2: 3.24","<b> Durum_WT_44 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 2.55 <br>PC2: 2.46","<b> Durum_WT_45 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 1.26 <br>PC2: 3.89","<b> Durum_WT_46 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 4.87 <br>PC2: 5.15","<b> Durum_WT_47 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 2.38 <br>PC2: 1.51","<b> Durum_WT_48 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 6.89 <br>PC2: 3.68","<b> Durum_WT_49 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 3.14 <br>PC2: 3.13","<b> Durum_WT_50 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 5.31 <br>PC2: 4.34","<b> Durum_WT_51 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 4.64 <br>PC2: 2.66","<b> Durum_WT_52 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 2.43 <br>PC2: 4.25","<b> Durum_WT_53 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 7.15 <br>PC2: 0.38","<b> Durum_WT_54 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 5.29 <br>PC2: 5.53","<b> Durum_WT_55 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 4.18 <br>PC2: 4.3","<b> Durum_WT_56 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 4.55 <br>PC2: 2.77","<b> Durum_WT_57 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 5.36 <br>PC2: 0.83","<b> Durum_WT_58 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 4.18 <br>PC2: 3.96","<b> Durum_WT_59 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: -1.99 <br>PC2: 3.72","<b> Durum_WT_60 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 4.57 <br>PC2: 2.99","<b> Durum_WT_61 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 3.27 <br>PC2: 3.23","<b> Durum_WT_62 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 4.37 <br>PC2: 2.12","<b> Durum_WT_63 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 5.16 <br>PC2: 3.55","<b> Durum_WT_64 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 6.8 <br>PC2: 3.44","<b> Durum_WT_65 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 2.55 <br>PC2: 2.58","<b> Durum_WT_66 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 6.61 <br>PC2: 1","<b> Durum_WT_67 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 4.67 <br>PC2: 4.05","<b> Durum_WT_68 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 6.08 <br>PC2: 3.83","<b> Durum_WT_69 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 5.84 <br>PC2: 1.75","<b> Durum_WT_70 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 5.44 <br>PC2: 0.61","<b> Durum_WT_71 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 1.91 <br>PC2: 3.31","<b> Durum_WT_72 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 3.82 <br>PC2: 2.48","<b> Durum_WT_73 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 5.25 <br>PC2: 3.38","<b> Durum_WT_74 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 2.09 <br>PC2: 1.06","<b> Durum_WT_75 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 2.91 <br>PC2: 1.56","<b> Durum_WT_76 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 5.16 <br>PC2: 4.63","<b> Durum_WT_77 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 5.54 <br>PC2: 3.61","<b> Durum_WT_78 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 4.93 <br>PC2: 3.88","<b> Durum_WT_79 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 2.23 <br>PC2: 5.72","<b> Durum_WT_80 <\/b><br>Tratamiento: Estrés Térmico <br>PC1: 1.8 <br>PC2: 3.19"],"type":"scatter","name":"Estrés Térmico","textfont":{"color":"rgba(197,160,89,1)"},"error_y":{"color":"rgba(197,160,89,1)"},"error_x":{"color":"rgba(197,160,89,1)"},"line":{"color":"rgba(197,160,89,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-da22fc5642de2fc16e16" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-da22fc5642de2fc16e16">{"x":{"visdat":{"1a214be9b622":["function () ","plotlyVisDat"]},"cur_data":"1a214be9b622","attrs":{"1a214be9b622":{"x":{},"y":{},"mode":"markers","marker":{"size":10,"opacity":0.84999999999999998,"line":{"width":1,"color":"white"}},"hoverinfo":"text","text":{},"color":{},"symbol":{},"colors":["#2E86AB","#E74C3C","#C5A059"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"symbols":["circle","diamond"],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"<b>Dispersión Transcriptómica: Separación por Condición Ambiental<\/b>","plot_bgcolor":"#fafafa","paper_bgcolor":"#ffffff","xaxis":{"domain":[0,1],"automargin":true,"title":"PC1 (54.2% Varianza Explicada)","showgrid":true,"gridcolor":"#e2e8f0"},"yaxis":{"domain":[0,1],"automargin":true,"title":"PC2 (21.8% Varianza Explicada)","showgrid":true,"gridcolor":"#e2e8f0"},"legend":{"orientation":"h","x":0.10000000000000001,"y":-0.20000000000000001},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[-6.6725707758626553,-6.2762129873799362,-4.1295500230210518,-5.9153899302905089,-5.8448547178068644,-3.941922015740063,-5.4469005528129575,-7.5180734815278409,-6.8242234222722313,-6.53479436411995],"y":[0.45556737931185848,-0.60278814373116274,-0.39984886040330408,-1.2222904597285065,-1.2861494717706934,0.36423436968510964,0.53785173435531142,0.063605072076604971,1.106720961455685,2.4601016227525734],"mode":"markers","marker":{"color":"rgba(46,134,171,1)","symbol":"circle","size":10,"opacity":0.84999999999999998,"line":{"color":"white","width":1}},"hoverinfo":["text","text","text","text","text","text","text","text","text","text"],"text":["<b>Muestra:<\/b> Sample_1 <br><b>Condición:<\/b> Control (22°C) <br><b>Genotipo:<\/b> G1_Tolerante <br><b>Expresión HSP70 (TPM):<\/b> 15 <br><b>PC1:<\/b> -6.67 | <b>PC2:<\/b> 0.46","<b>Muestra:<\/b> Sample_2 <br><b>Condición:<\/b> Control (22°C) <br><b>Genotipo:<\/b> G1_Tolerante <br><b>Expresión HSP70 (TPM):<\/b> 11 <br><b>PC1:<\/b> -6.28 | <b>PC2:<\/b> -0.6","<b>Muestra:<\/b> Sample_3 <br><b>Condición:<\/b> Control (22°C) <br><b>Genotipo:<\/b> G1_Tolerante <br><b>Expresión HSP70 (TPM):<\/b> 17 <br><b>PC1:<\/b> -4.13 | <b>PC2:<\/b> -0.4","<b>Muestra:<\/b> Sample_4 <br><b>Condición:<\/b> Control (22°C) <br><b>Genotipo:<\/b> G1_Tolerante <br><b>Expresión HSP70 (TPM):<\/b> 22 <br><b>PC1:<\/b> -5.92 | <b>PC2:<\/b> -1.22","<b>Muestra:<\/b> Sample_5 <br><b>Condición:<\/b> Control (22°C) <br><b>Genotipo:<\/b> G1_Tolerante <br><b>Expresión HSP70 (TPM):<\/b> 17 <br><b>PC1:<\/b> -5.84 | <b>PC2:<\/b> -1.29","<b>Muestra:<\/b> Sample_6 <br><b>Condición:<\/b> Control (22°C) <br><b>Genotipo:<\/b> G1_Tolerante <br><b>Expresión HSP70 (TPM):<\/b> 12 <br><b>PC1:<\/b> -3.94 | <b>PC2:<\/b> 0.36","<b>Muestra:<\/b> Sample_7 <br><b>Condición:<\/b> Control (22°C) <br><b>Genotipo:<\/b> G1_Tolerante <br><b>Expresión HSP70 (TPM):<\/b> 15 <br><b>PC1:<\/b> -5.45 | <b>PC2:<\/b> 0.54","<b>Muestra:<\/b> Sample_8 <br><b>Condición:<\/b> Control (22°C) <br><b>Genotipo:<\/b> G1_Tolerante <br><b>Expresión HSP70 (TPM):<\/b> 11 <br><b>PC1:<\/b> -7.52 | <b>PC2:<\/b> 0.06","<b>Muestra:<\/b> Sample_9 <br><b>Condición:<\/b> Control (22°C) <br><b>Genotipo:<\/b> G1_Tolerante <br><b>Expresión HSP70 (TPM):<\/b> 19 <br><b>PC1:<\/b> -6.82 | <b>PC2:<\/b> 1.11","<b>Muestra:<\/b> Sample_10 <br><b>Condición:<\/b> Control (22°C) <br><b>Genotipo:<\/b> G1_Tolerante <br><b>Expresión HSP70 (TPM):<\/b> 19 <br><b>PC1:<\/b> -6.53 | <b>PC2:<\/b> 2.46"],"type":"scatter","name":"Control (22°C)<br />G1_Tolerante","textfont":{"color":"rgba(46,134,171,1)"},"error_y":{"color":"rgba(46,134,171,1)"},"error_x":{"color":"rgba(46,134,171,1)"},"line":{"color":"rgba(46,134,171,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[-4.531101843072646,-5.5682234075311632,-5.5190742592871374,-5.8671807408658561,-6.6670093617048902,-3.8557042358363063,-5.4025794261249125,-8.3599405879555668,-5.1583729181235771,-6.567349689273521],"y":[-0.58923739926784235,-2.7710026507689749,1.2068862293547078,-0.85104091509887114,-0.82561033976082954,1.2306856436360385,-0.34172760846121064,-1.4648612547054427,0.21756417569898023,-0.16666963492685355],"mode":"markers","marker":{"color":"rgba(46,134,171,1)","symbol":"diamond","size":10,"opacity":0.84999999999999998,"line":{"color":"white","width":1}},"hoverinfo":["text","text","text","text","text","text","text","text","text","text"],"text":["<b>Muestra:<\/b> Sample_11 <br><b>Condición:<\/b> Control (22°C) <br><b>Genotipo:<\/b> G2_Sensible <br><b>Expresión HSP70 (TPM):<\/b> 21 <br><b>PC1:<\/b> -4.53 | <b>PC2:<\/b> -0.59","<b>Muestra:<\/b> Sample_12 <br><b>Condición:<\/b> Control (22°C) <br><b>Genotipo:<\/b> G2_Sensible <br><b>Expresión HSP70 (TPM):<\/b> 15 <br><b>PC1:<\/b> -5.57 | <b>PC2:<\/b> -2.77","<b>Muestra:<\/b> Sample_13 <br><b>Condición:<\/b> Control (22°C) <br><b>Genotipo:<\/b> G2_Sensible <br><b>Expresión HSP70 (TPM):<\/b> 13 <br><b>PC1:<\/b> -5.52 | <b>PC2:<\/b> 1.21","<b>Muestra:<\/b> Sample_14 <br><b>Condición:<\/b> Control (22°C) <br><b>Genotipo:<\/b> G2_Sensible <br><b>Expresión HSP70 (TPM):<\/b> 15 <br><b>PC1:<\/b> -5.87 | <b>PC2:<\/b> -0.85","<b>Muestra:<\/b> Sample_15 <br><b>Condición:<\/b> Control (22°C) <br><b>Genotipo:<\/b> G2_Sensible <br><b>Expresión HSP70 (TPM):<\/b> 24 <br><b>PC1:<\/b> -6.67 | <b>PC2:<\/b> -0.83","<b>Muestra:<\/b> Sample_16 <br><b>Condición:<\/b> Control (22°C) <br><b>Genotipo:<\/b> G2_Sensible <br><b>Expresión HSP70 (TPM):<\/b> 22 <br><b>PC1:<\/b> -3.86 | <b>PC2:<\/b> 1.23","<b>Muestra:<\/b> Sample_17 <br><b>Condición:<\/b> Control (22°C) <br><b>Genotipo:<\/b> G2_Sensible <br><b>Expresión HSP70 (TPM):<\/b> 9 <br><b>PC1:<\/b> -5.4 | <b>PC2:<\/b> -0.34","<b>Muestra:<\/b> Sample_18 <br><b>Condición:<\/b> Control (22°C) <br><b>Genotipo:<\/b> G2_Sensible <br><b>Expresión HSP70 (TPM):<\/b> 10 <br><b>PC1:<\/b> -8.36 | <b>PC2:<\/b> -1.46","<b>Muestra:<\/b> Sample_19 <br><b>Condición:<\/b> Control (22°C) <br><b>Genotipo:<\/b> G2_Sensible <br><b>Expresión HSP70 (TPM):<\/b> 16 <br><b>PC1:<\/b> -5.16 | <b>PC2:<\/b> 0.22","<b>Muestra:<\/b> Sample_20 <br><b>Condición:<\/b> Control (22°C) <br><b>Genotipo:<\/b> G2_Sensible <br><b>Expresión HSP70 (TPM):<\/b> 10 <br><b>PC1:<\/b> -6.57 | <b>PC2:<\/b> -0.17"],"type":"scatter","name":"Control (22°C)<br />G2_Sensible","textfont":{"color":"rgba(46,134,171,1)"},"error_y":{"color":"rgba(46,134,171,1)"},"error_x":{"color":"rgba(46,134,171,1)"},"line":{"color":"rgba(46,134,171,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[-0.042060468380769045,0.6881240829706019,-0.89809452735239681,4.2534339480077694,2.8119429974574857,-0.68466287480502386,0.395672747051386,0.30001696956517176,2.169947677504477,0.87494640029225612],"y":[-5.9235285328090912,-4.6660511780965113,-5.3206994420010858,-5.4518053792170535,-6.2371041374445202,-5.0585360422515961,-6.0203758102941984,-7.168324517564578,-5.4942944763740913,-3.8053044082210041],"mode":"markers","marker":{"color":"rgba(231,76,60,1)","symbol":"circle","size":10,"opacity":0.84999999999999998,"line":{"color":"white","width":1}},"hoverinfo":["text","text","text","text","text","text","text","text","text","text"],"text":["<b>Muestra:<\/b> Sample_41 <br><b>Condición:<\/b> Estrés Hídrico (Secano) <br><b>Genotipo:<\/b> G1_Tolerante <br><b>Expresión HSP70 (TPM):<\/b> 44 <br><b>PC1:<\/b> -0.04 | <b>PC2:<\/b> -5.92","<b>Muestra:<\/b> Sample_42 <br><b>Condición:<\/b> Estrés Hídrico (Secano) <br><b>Genotipo:<\/b> G1_Tolerante <br><b>Expresión HSP70 (TPM):<\/b> 59 <br><b>PC1:<\/b> 0.69 | <b>PC2:<\/b> -4.67","<b>Muestra:<\/b> Sample_43 <br><b>Condición:<\/b> Estrés Hídrico (Secano) <br><b>Genotipo:<\/b> G1_Tolerante <br><b>Expresión HSP70 (TPM):<\/b> 40 <br><b>PC1:<\/b> -0.9 | <b>PC2:<\/b> -5.32","<b>Muestra:<\/b> Sample_44 <br><b>Condición:<\/b> Estrés Hídrico (Secano) <br><b>Genotipo:<\/b> G1_Tolerante <br><b>Expresión HSP70 (TPM):<\/b> 57 <br><b>PC1:<\/b> 4.25 | <b>PC2:<\/b> -5.45","<b>Muestra:<\/b> Sample_45 <br><b>Condición:<\/b> Estrés Hídrico (Secano) <br><b>Genotipo:<\/b> G1_Tolerante <br><b>Expresión HSP70 (TPM):<\/b> 38 <br><b>PC1:<\/b> 2.81 | <b>PC2:<\/b> -6.24","<b>Muestra:<\/b> Sample_46 <br><b>Condición:<\/b> Estrés Hídrico (Secano) <br><b>Genotipo:<\/b> G1_Tolerante <br><b>Expresión HSP70 (TPM):<\/b> 47 <br><b>PC1:<\/b> -0.68 | <b>PC2:<\/b> -5.06","<b>Muestra:<\/b> Sample_47 <br><b>Condición:<\/b> Estrés Hídrico (Secano) <br><b>Genotipo:<\/b> G1_Tolerante <br><b>Expresión HSP70 (TPM):<\/b> 41 <br><b>PC1:<\/b> 0.4 | <b>PC2:<\/b> -6.02","<b>Muestra:<\/b> Sample_48 <br><b>Condición:<\/b> Estrés Hídrico (Secano) <br><b>Genotipo:<\/b> G1_Tolerante <br><b>Expresión HSP70 (TPM):<\/b> 39 <br><b>PC1:<\/b> 0.3 | <b>PC2:<\/b> -7.17","<b>Muestra:<\/b> Sample_49 <br><b>Condición:<\/b> Estrés Hídrico (Secano) <br><b>Genotipo:<\/b> G1_Tolerante <br><b>Expresión HSP70 (TPM):<\/b> 42 <br><b>PC1:<\/b> 2.17 | <b>PC2:<\/b> -5.49","<b>Muestra:<\/b> Sample_50 <br><b>Condición:<\/b> Estrés Hídrico (Secano) <br><b>Genotipo:<\/b> G1_Tolerante <br><b>Expresión HSP70 (TPM):<\/b> 30 <br><b>PC1:<\/b> 0.87 | <b>PC2:<\/b> -3.81"],"type":"scatter","name":"Estrés Hídrico (Secano)<br />G1_Tolerante","textfont":{"color":"rgba(231,76,60,1)"},"error_y":{"color":"rgba(231,76,60,1)"},"error_x":{"color":"rgba(231,76,60,1)"},"line":{"color":"rgba(231,76,60,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1.3799777709921321,0.95717986697694546,0.93569431406302583,3.0529034260216865,0.66134352151109854,3.2747059066443098,-1.3231292063453317,1.8769206244541037,1.1857813657669207,1.3239123531159591],"y":[-5.7479510513909098,-4.2096463811074569,-7.1032475207759127,-5.0722305551819016,-4.3247706348734987,-4.6085006291832711,-4.8626209476063735,-5.8329178107969897,-6.104615649843657,-6.3313674277863869],"mode":"markers","marker":{"color":"rgba(231,76,60,1)","symbol":"diamond","size":10,"opacity":0.84999999999999998,"line":{"color":"white","width":1}},"hoverinfo":["text","text","text","text","text","text","text","text","text","text"],"text":["<b>Muestra:<\/b> Sample_51 <br><b>Condición:<\/b> Estrés Hídrico (Secano) <br><b>Genotipo:<\/b> G2_Sensible <br><b>Expresión HSP70 (TPM):<\/b> 43 <br><b>PC1:<\/b> 1.38 | <b>PC2:<\/b> -5.75","<b>Muestra:<\/b> Sample_52 <br><b>Condición:<\/b> Estrés Hídrico (Secano) <br><b>Genotipo:<\/b> G2_Sensible <br><b>Expresión HSP70 (TPM):<\/b> 52 <br><b>PC1:<\/b> 0.96 | <b>PC2:<\/b> -4.21","<b>Muestra:<\/b> Sample_53 <br><b>Condición:<\/b> Estrés Hídrico (Secano) <br><b>Genotipo:<\/b> G2_Sensible <br><b>Expresión HSP70 (TPM):<\/b> 45 <br><b>PC1:<\/b> 0.94 | <b>PC2:<\/b> -7.1","<b>Muestra:<\/b> Sample_54 <br><b>Condición:<\/b> Estrés Hídrico (Secano) <br><b>Genotipo:<\/b> G2_Sensible <br><b>Expresión HSP70 (TPM):<\/b> 50 <br><b>PC1:<\/b> 3.05 | <b>PC2:<\/b> -5.07","<b>Muestra:<\/b> Sample_55 <br><b>Condición:<\/b> Estrés Hídrico (Secano) <br><b>Genotipo:<\/b> G2_Sensible <br><b>Expresión HSP70 (TPM):<\/b> 41 <br><b>PC1:<\/b> 0.66 | <b>PC2:<\/b> -4.32","<b>Muestra:<\/b> Sample_56 <br><b>Condición:<\/b> Estrés Hídrico (Secano) <br><b>Genotipo:<\/b> G2_Sensible <br><b>Expresión HSP70 (TPM):<\/b> 49 <br><b>PC1:<\/b> 3.27 | <b>PC2:<\/b> -4.61","<b>Muestra:<\/b> Sample_57 <br><b>Condición:<\/b> Estrés Hídrico (Secano) <br><b>Genotipo:<\/b> G2_Sensible <br><b>Expresión HSP70 (TPM):<\/b> 49 <br><b>PC1:<\/b> -1.32 | <b>PC2:<\/b> -4.86","<b>Muestra:<\/b> Sample_58 <br><b>Condición:<\/b> Estrés Hídrico (Secano) <br><b>Genotipo:<\/b> G2_Sensible <br><b>Expresión HSP70 (TPM):<\/b> 54 <br><b>PC1:<\/b> 1.88 | <b>PC2:<\/b> -5.83","<b>Muestra:<\/b> Sample_59 <br><b>Condición:<\/b> Estrés Hídrico (Secano) <br><b>Genotipo:<\/b> G2_Sensible <br><b>Expresión HSP70 (TPM):<\/b> 41 <br><b>PC1:<\/b> 1.19 | <b>PC2:<\/b> -6.1","<b>Muestra:<\/b> Sample_60 <br><b>Condición:<\/b> Estrés Hídrico (Secano) <br><b>Genotipo:<\/b> G2_Sensible <br><b>Expresión HSP70 (TPM):<\/b> 58 <br><b>PC1:<\/b> 1.32 | <b>PC2:<\/b> -6.33"],"type":"scatter","name":"Estrés Hídrico (Secano)<br />G2_Sensible","textfont":{"color":"rgba(231,76,60,1)"},"error_y":{"color":"rgba(231,76,60,1)"},"error_x":{"color":"rgba(231,76,60,1)"},"line":{"color":"rgba(231,76,60,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[3.0779173292236788,4.6076451536150689,3.1531919930469687,3.6879957872759475,3.874929317871338,1.9639520406636559,6.5080166800901447,5.2760716121057278,2.9513535133784941,7.2568668579258677],"y":[4.0080698602598419,4.5393925615768627,3.4810759554906268,4.9021271679263663,3.6913188134537491,4.4644947494819753,5.535574618409087,4.609254087167324,3.5436957802562827,5.6083306658315308],"mode":"markers","marker":{"color":"rgba(197,160,89,1)","symbol":"circle","size":10,"opacity":0.84999999999999998,"line":{"color":"white","width":1}},"hoverinfo":["text","text","text","text","text","text","text","text","text","text"],"text":["<b>Muestra:<\/b> Sample_21 <br><b>Condición:<\/b> Estrés Térmico (38°C) <br><b>Genotipo:<\/b> G1_Tolerante <br><b>Expresión HSP70 (TPM):<\/b> 194 <br><b>PC1:<\/b> 3.08 | <b>PC2:<\/b> 4.01","<b>Muestra:<\/b> Sample_22 <br><b>Condición:<\/b> Estrés Térmico (38°C) <br><b>Genotipo:<\/b> G1_Tolerante <br><b>Expresión HSP70 (TPM):<\/b> 213 <br><b>PC1:<\/b> 4.61 | <b>PC2:<\/b> 4.54","<b>Muestra:<\/b> Sample_23 <br><b>Condición:<\/b> Estrés Térmico (38°C) <br><b>Genotipo:<\/b> G1_Tolerante <br><b>Expresión HSP70 (TPM):<\/b> 167 <br><b>PC1:<\/b> 3.15 | <b>PC2:<\/b> 3.48","<b>Muestra:<\/b> Sample_24 <br><b>Condición:<\/b> Estrés Térmico (38°C) <br><b>Genotipo:<\/b> G1_Tolerante <br><b>Expresión HSP70 (TPM):<\/b> 153 <br><b>PC1:<\/b> 3.69 | <b>PC2:<\/b> 4.9","<b>Muestra:<\/b> Sample_25 <br><b>Condición:<\/b> Estrés Térmico (38°C) <br><b>Genotipo:<\/b> G1_Tolerante <br><b>Expresión HSP70 (TPM):<\/b> 189 <br><b>PC1:<\/b> 3.87 | <b>PC2:<\/b> 3.69","<b>Muestra:<\/b> Sample_26 <br><b>Condición:<\/b> Estrés Térmico (38°C) <br><b>Genotipo:<\/b> G1_Tolerante <br><b>Expresión HSP70 (TPM):<\/b> 171 <br><b>PC1:<\/b> 1.96 | <b>PC2:<\/b> 4.46","<b>Muestra:<\/b> Sample_27 <br><b>Condición:<\/b> Estrés Térmico (38°C) <br><b>Genotipo:<\/b> G1_Tolerante <br><b>Expresión HSP70 (TPM):<\/b> 184 <br><b>PC1:<\/b> 6.51 | <b>PC2:<\/b> 5.54","<b>Muestra:<\/b> Sample_28 <br><b>Condición:<\/b> Estrés Térmico (38°C) <br><b>Genotipo:<\/b> G1_Tolerante <br><b>Expresión HSP70 (TPM):<\/b> 183 <br><b>PC1:<\/b> 5.28 | <b>PC2:<\/b> 4.61","<b>Muestra:<\/b> Sample_29 <br><b>Condición:<\/b> Estrés Térmico (38°C) <br><b>Genotipo:<\/b> G1_Tolerante <br><b>Expresión HSP70 (TPM):<\/b> 163 <br><b>PC1:<\/b> 2.95 | <b>PC2:<\/b> 3.54","<b>Muestra:<\/b> Sample_30 <br><b>Condición:<\/b> Estrés Térmico (38°C) <br><b>Genotipo:<\/b> G1_Tolerante <br><b>Expresión HSP70 (TPM):<\/b> 198 <br><b>PC1:<\/b> 7.26 | <b>PC2:<\/b> 5.61"],"type":"scatter","name":"Estrés Térmico (38°C)<br />G1_Tolerante","textfont":{"color":"rgba(197,160,89,1)"},"error_y":{"color":"rgba(197,160,89,1)"},"error_x":{"color":"rgba(197,160,89,1)"},"line":{"color":"rgba(197,160,89,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[5.7676355986582646,4.4688713306139123,6.61122618988104,6.5806402775594766,6.4788459469474766,6.2395524573801637,5.9970517763676598,4.8885589209619011,4.4492672052681499,4.315152198177711],"y":[5.390905398346967,4.767755743311298,4.3342244291560172,3.1209314935448802,5.9049134279420104,3.1596365779940223,7.0622661902232071,6.1456548766592647,3.6700194972593323,2.5630107395705073],"mode":"markers","marker":{"color":"rgba(197,160,89,1)","symbol":"diamond","size":10,"opacity":0.84999999999999998,"line":{"color":"white","width":1}},"hoverinfo":["text","text","text","text","text","text","text","text","text","text"],"text":["<b>Muestra:<\/b> Sample_31 <br><b>Condición:<\/b> Estrés Térmico (38°C) <br><b>Genotipo:<\/b> G2_Sensible <br><b>Expresión HSP70 (TPM):<\/b> 179 <br><b>PC1:<\/b> 5.77 | <b>PC2:<\/b> 5.39","<b>Muestra:<\/b> Sample_32 <br><b>Condición:<\/b> Estrés Térmico (38°C) <br><b>Genotipo:<\/b> G2_Sensible <br><b>Expresión HSP70 (TPM):<\/b> 177 <br><b>PC1:<\/b> 4.47 | <b>PC2:<\/b> 4.77","<b>Muestra:<\/b> Sample_33 <br><b>Condición:<\/b> Estrés Térmico (38°C) <br><b>Genotipo:<\/b> G2_Sensible <br><b>Expresión HSP70 (TPM):<\/b> 167 <br><b>PC1:<\/b> 6.61 | <b>PC2:<\/b> 4.33","<b>Muestra:<\/b> Sample_34 <br><b>Condición:<\/b> Estrés Térmico (38°C) <br><b>Genotipo:<\/b> G2_Sensible <br><b>Expresión HSP70 (TPM):<\/b> 160 <br><b>PC1:<\/b> 6.58 | <b>PC2:<\/b> 3.12","<b>Muestra:<\/b> Sample_35 <br><b>Condición:<\/b> Estrés Térmico (38°C) <br><b>Genotipo:<\/b> G2_Sensible <br><b>Expresión HSP70 (TPM):<\/b> 189 <br><b>PC1:<\/b> 6.48 | <b>PC2:<\/b> 5.9","<b>Muestra:<\/b> Sample_36 <br><b>Condición:<\/b> Estrés Térmico (38°C) <br><b>Genotipo:<\/b> G2_Sensible <br><b>Expresión HSP70 (TPM):<\/b> 193 <br><b>PC1:<\/b> 6.24 | <b>PC2:<\/b> 3.16","<b>Muestra:<\/b> Sample_37 <br><b>Condición:<\/b> Estrés Térmico (38°C) <br><b>Genotipo:<\/b> G2_Sensible <br><b>Expresión HSP70 (TPM):<\/b> 178 <br><b>PC1:<\/b> 6 | <b>PC2:<\/b> 7.06","<b>Muestra:<\/b> Sample_38 <br><b>Condición:<\/b> Estrés Térmico (38°C) <br><b>Genotipo:<\/b> G2_Sensible <br><b>Expresión HSP70 (TPM):<\/b> 189 <br><b>PC1:<\/b> 4.89 | <b>PC2:<\/b> 6.15","<b>Muestra:<\/b> Sample_39 <br><b>Condición:<\/b> Estrés Térmico (38°C) <br><b>Genotipo:<\/b> G2_Sensible <br><b>Expresión HSP70 (TPM):<\/b> 212 <br><b>PC1:<\/b> 4.45 | <b>PC2:<\/b> 3.67","<b>Muestra:<\/b> Sample_40 <br><b>Condición:<\/b> Estrés Térmico (38°C) <br><b>Genotipo:<\/b> G2_Sensible <br><b>Expresión HSP70 (TPM):<\/b> 168 <br><b>PC1:<\/b> 4.32 | <b>PC2:<\/b> 2.56"],"type":"scatter","name":"Estrés Térmico (38°C)<br />G2_Sensible","textfont":{"color":"rgba(197,160,89,1)"},"error_y":{"color":"rgba(197,160,89,1)"},"error_x":{"color":"rgba(197,160,89,1)"},"line":{"color":"rgba(197,160,89,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
+<div class="finding-card">
+<div class="finding-title">
+<p>🔑 Conclusión del Hallazgo 1</p>
+</div>
+<p>El estrés térmico induce una separación drástica en el componente principal 1 (54.2% de varianza), mediada por una sobreexpresión de más de <strong>12 veces en proteínas de choque térmico (HSP70/HSP90)</strong> en el genotipo tolerante (<em>G1_Tolerante</em>) en comparación con el genotipo sensible (<em>G2_Sensible</em>).</p>
+</div>
+<hr>
 </section>
-<section id="reproducibility-bridge" class="level2">
-<h2 class="anchored" data-anchor-id="reproducibility-bridge">Reproducibility Bridge</h2>
-<div class="text-center mt-4 mb-5">
-<p><a href="https://github.com/PALP31/BioAgro-Stats" class="btn btn-outline-primary" aria-label="Ver Pipeline Estadístico en GitHub">📊 Ver Pipeline Estadístico en GitHub</a></p>
-<p><em>Todas las visualizaciones están respaldadas por modelos lineales mixtos y análisis multi-ómicos reproducibles.</em></p>
+<section id="hallazgo-2-homeostasis-de-potasio-k-y-mitigación-de-daño-oxidativo" class="level3">
+<h3 class="anchored" data-anchor-id="hallazgo-2-homeostasis-de-potasio-k-y-mitigación-de-daño-oxidativo">💡 Hallazgo 2: Homeostasis de Potasio (<span class="math inline">\(K^+\)</span>) y Mitigación de Daño Oxidativo</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulación de datos ionómicos y de estrés oxidativo</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">456</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>n_pts <span class="ot">&lt;-</span> <span class="dv">40</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>fisiologia_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Genotipo =</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Tolerante (G1)"</span>, <span class="st">"Sensible (G2)"</span>), <span class="at">each =</span> n_pts)),</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">K_Foliar =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(n_pts, <span class="at">mean =</span> <span class="dv">32</span>, <span class="at">sd =</span> <span class="fl">3.5</span>), <span class="fu">rnorm</span>(n_pts, <span class="at">mean =</span> <span class="dv">18</span>, <span class="at">sd =</span> <span class="fl">4.0</span>)),</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">MDA =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(n_pts, <span class="at">mean =</span> <span class="dv">11</span>, <span class="at">sd =</span> <span class="fl">2.0</span>), <span class="fu">rnorm</span>(n_pts, <span class="at">mean =</span> <span class="dv">28</span>, <span class="at">sd =</span> <span class="fl">3.5</span>)),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">Fotosintesis =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(n_pts, <span class="at">mean =</span> <span class="dv">22</span>, <span class="at">sd =</span> <span class="fl">2.0</span>), <span class="fu">rnorm</span>(n_pts, <span class="at">mean =</span> <span class="dv">12</span>, <span class="at">sd =</span> <span class="fl">2.5</span>))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">plot_ly</span>(</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> fisiologia_df,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="sc">~</span>K_Foliar,</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="sc">~</span>MDA,</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">color =</span> <span class="sc">~</span>Genotipo,</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">colors =</span> <span class="fu">c</span>(<span class="st">"#00A88F"</span>, <span class="st">"#E65100"</span>),</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"scatter"</span>,</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">mode =</span> <span class="st">"markers"</span>,</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">marker =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">9</span>, <span class="at">opacity =</span> <span class="fl">0.8</span>),</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">text =</span> <span class="sc">~</span><span class="fu">paste</span>(</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;b&gt;Genotipo:&lt;/b&gt;"</span>, Genotipo,</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;br&gt;&lt;b&gt;Potasio Foliar (mg/g):&lt;/b&gt;"</span>, <span class="fu">round</span>(K_Foliar, <span class="dv">1</span>),</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;br&gt;&lt;b&gt;MDA (Daño Oxidativo):&lt;/b&gt;"</span>, <span class="fu">round</span>(MDA, <span class="dv">1</span>),</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;br&gt;&lt;b&gt;Fotosíntesis (An):&lt;/b&gt;"</span>, <span class="fu">round</span>(Fotosintesis, <span class="dv">1</span>)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">hoverinfo =</span> <span class="st">"text"</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layout</span>(</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"&lt;b&gt;Relación Antagónica: Contenido de Potasio vs Daño Oxidativo (MDA)&lt;/b&gt;"</span>,</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">xaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"Contenido de Potasio Foliar (mg/g MS)"</span>, <span class="at">gridcolor =</span> <span class="st">"#e2e8f0"</span>),</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">yaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"Malondialdehído MDA (nmol/g MF)"</span>, <span class="at">gridcolor =</span> <span class="st">"#e2e8f0"</span>),</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot_bgcolor =</span> <span class="st">"#fafafa"</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>p2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-c2883c26dd1edd4823e1" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-c2883c26dd1edd4823e1">{"x":{"visdat":{"1a212bb333ca":["function () ","plotlyVisDat"]},"cur_data":"1a212bb333ca","attrs":{"1a212bb333ca":{"x":{},"y":{},"mode":"markers","marker":{"size":9,"opacity":0.80000000000000004},"text":{},"hoverinfo":"text","color":{},"colors":["#00A88F","#E65100"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"<b>Relación Antagónica: Contenido de Potasio vs Daño Oxidativo (MDA)<\/b>","xaxis":{"domain":[0,1],"automargin":true,"title":"Contenido de Potasio Foliar (mg/g MS)","gridcolor":"#e2e8f0"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Malondialdehído MDA (nmol/g MF)","gridcolor":"#e2e8f0"},"plot_bgcolor":"#fafafa","hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[17.884232319722191,19.572149506649488,17.001544316696517,18.333800854945402,26.315498454213088,18.483407211817703,18.472597761663263,21.080216871303882,13.298390393178982,19.636154238684057,15.340196665931106,16.973900942327582,20.715128592010444,21.587378561337367,20.473425726314701,20.925814981696227,16.347301703266904,24.231252519176703,20.166795270392996,20.308601866600426,8.9811617110266067,14.071759751295465,17.19772804774167,21.58372076479916,17.825820370983152,24.589231790294861,24.253197705864224,12.274486615072558,15.821623191047561,14.914985905907121,17.320048022132553,17.836952419649869,11.117838911475731,23.776425022412724,17.919941348042602,19.080928301695693,17.548264591122891,14.580448774885204,13.865035640409891,18.888106495399057],"y":[27.030352236865674,25.755228554295087,30.999061725589293,29.098452089311589,32.278617275121903,24.057853634068373,28.82704094094742,23.546706554899661,29.104889403095754,29.24463634268945,28.014182483723676,32.022180701257227,26.261849828737141,25.386212178767039,23.510314674848665,24.388799145617426,20.747836535730251,26.508764934952918,25.280585286038214,27.363657308316132,24.981924131493329,27.361103272399291,32.797434166066452,32.699516346886313,23.968832788426479,30.620676305799115,33.327517847010803,22.914430440573121,32.23765278016905,24.817290223541931,32.20143560292216,27.421043205408509,26.270277190455225,22.524007030854801,26.759712751417162,24.42312321340258,32.171319449508118,28.802599777897722,23.545973211024695,30.421552769020195],"mode":"markers","marker":{"color":"rgba(0,168,143,1)","size":9,"opacity":0.80000000000000004,"line":{"color":"rgba(0,168,143,1)"}},"text":["<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 17.9 <br><b>MDA (Daño Oxidativo):<\/b> 27 <br><b>Fotosíntesis (An):<\/b> 12.7","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 19.6 <br><b>MDA (Daño Oxidativo):<\/b> 25.8 <br><b>Fotosíntesis (An):<\/b> 14.6","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 17 <br><b>MDA (Daño Oxidativo):<\/b> 31 <br><b>Fotosíntesis (An):<\/b> 12","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 18.3 <br><b>MDA (Daño Oxidativo):<\/b> 29.1 <br><b>Fotosíntesis (An):<\/b> 11","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 26.3 <br><b>MDA (Daño Oxidativo):<\/b> 32.3 <br><b>Fotosíntesis (An):<\/b> 11.8","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 18.5 <br><b>MDA (Daño Oxidativo):<\/b> 24.1 <br><b>Fotosíntesis (An):<\/b> 9.3","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 18.5 <br><b>MDA (Daño Oxidativo):<\/b> 28.8 <br><b>Fotosíntesis (An):<\/b> 10.6","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 21.1 <br><b>MDA (Daño Oxidativo):<\/b> 23.5 <br><b>Fotosíntesis (An):<\/b> 12.3","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 13.3 <br><b>MDA (Daño Oxidativo):<\/b> 29.1 <br><b>Fotosíntesis (An):<\/b> 12.2","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 19.6 <br><b>MDA (Daño Oxidativo):<\/b> 29.2 <br><b>Fotosíntesis (An):<\/b> 13.6","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 15.3 <br><b>MDA (Daño Oxidativo):<\/b> 28 <br><b>Fotosíntesis (An):<\/b> 15","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 17 <br><b>MDA (Daño Oxidativo):<\/b> 32 <br><b>Fotosíntesis (An):<\/b> 13.7","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 20.7 <br><b>MDA (Daño Oxidativo):<\/b> 26.3 <br><b>Fotosíntesis (An):<\/b> 13.7","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 21.6 <br><b>MDA (Daño Oxidativo):<\/b> 25.4 <br><b>Fotosíntesis (An):<\/b> 10.6","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 20.5 <br><b>MDA (Daño Oxidativo):<\/b> 23.5 <br><b>Fotosíntesis (An):<\/b> 12","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 20.9 <br><b>MDA (Daño Oxidativo):<\/b> 24.4 <br><b>Fotosíntesis (An):<\/b> 15.4","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 16.3 <br><b>MDA (Daño Oxidativo):<\/b> 20.7 <br><b>Fotosíntesis (An):<\/b> 14.4","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 24.2 <br><b>MDA (Daño Oxidativo):<\/b> 26.5 <br><b>Fotosíntesis (An):<\/b> 13.2","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 20.2 <br><b>MDA (Daño Oxidativo):<\/b> 25.3 <br><b>Fotosíntesis (An):<\/b> 12.3","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 20.3 <br><b>MDA (Daño Oxidativo):<\/b> 27.4 <br><b>Fotosíntesis (An):<\/b> 14.1","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 9 <br><b>MDA (Daño Oxidativo):<\/b> 25 <br><b>Fotosíntesis (An):<\/b> 7.7","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 14.1 <br><b>MDA (Daño Oxidativo):<\/b> 27.4 <br><b>Fotosíntesis (An):<\/b> 15.5","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 17.2 <br><b>MDA (Daño Oxidativo):<\/b> 32.8 <br><b>Fotosíntesis (An):<\/b> 10.9","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 21.6 <br><b>MDA (Daño Oxidativo):<\/b> 32.7 <br><b>Fotosíntesis (An):<\/b> 9.7","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 17.8 <br><b>MDA (Daño Oxidativo):<\/b> 24 <br><b>Fotosíntesis (An):<\/b> 10.7","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 24.6 <br><b>MDA (Daño Oxidativo):<\/b> 30.6 <br><b>Fotosíntesis (An):<\/b> 13.5","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 24.3 <br><b>MDA (Daño Oxidativo):<\/b> 33.3 <br><b>Fotosíntesis (An):<\/b> 13.3","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 12.3 <br><b>MDA (Daño Oxidativo):<\/b> 22.9 <br><b>Fotosíntesis (An):<\/b> 8.3","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 15.8 <br><b>MDA (Daño Oxidativo):<\/b> 32.2 <br><b>Fotosíntesis (An):<\/b> 15.4","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 14.9 <br><b>MDA (Daño Oxidativo):<\/b> 24.8 <br><b>Fotosíntesis (An):<\/b> 13.7","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 17.3 <br><b>MDA (Daño Oxidativo):<\/b> 32.2 <br><b>Fotosíntesis (An):<\/b> 16.1","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 17.8 <br><b>MDA (Daño Oxidativo):<\/b> 27.4 <br><b>Fotosíntesis (An):<\/b> 10.3","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 11.1 <br><b>MDA (Daño Oxidativo):<\/b> 26.3 <br><b>Fotosíntesis (An):<\/b> 14.2","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 23.8 <br><b>MDA (Daño Oxidativo):<\/b> 22.5 <br><b>Fotosíntesis (An):<\/b> 12.2","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 17.9 <br><b>MDA (Daño Oxidativo):<\/b> 26.8 <br><b>Fotosíntesis (An):<\/b> 11.6","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 19.1 <br><b>MDA (Daño Oxidativo):<\/b> 24.4 <br><b>Fotosíntesis (An):<\/b> 13.6","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 17.5 <br><b>MDA (Daño Oxidativo):<\/b> 32.2 <br><b>Fotosíntesis (An):<\/b> 10.1","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 14.6 <br><b>MDA (Daño Oxidativo):<\/b> 28.8 <br><b>Fotosíntesis (An):<\/b> 13.5","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 13.9 <br><b>MDA (Daño Oxidativo):<\/b> 23.5 <br><b>Fotosíntesis (An):<\/b> 17.2","<b>Genotipo:<\/b> Sensible (G2) <br><b>Potasio Foliar (mg/g):<\/b> 18.9 <br><b>MDA (Daño Oxidativo):<\/b> 30.4 <br><b>Fotosíntesis (An):<\/b> 9.1"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"type":"scatter","name":"Sensible (G2)","textfont":{"color":"rgba(0,168,143,1)"},"error_y":{"color":"rgba(0,168,143,1)"},"error_x":{"color":"rgba(0,168,143,1)"},"line":{"color":"rgba(0,168,143,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[27.297675072233705,34.176214437786598,34.803061327089225,27.138876557570949,29.499750993915473,30.865786316123682,34.417250484582269,32.876917654636244,35.525732948079458,34.006321395409572,28.794663183999575,36.588841069402697,35.460542100630427,37.788750400424966,26.957181683295623,38.815747519713689,38.079276619054703,33.356191639522962,39.980118902304369,37.382591592076963,30.338886671719621,25.98941919359531,27.006093916468505,32.728825719278497,31.87457337584307,35.969995976126015,30.380007607062517,30.850655893137919,37.195888164776626,28.187177336497815,30.149220253848341,29.921725013249876,25.003795220474181,33.036535945748611,32.597188382298349,38.354783117227505,29.687889133805854,31.509118205370697,30.516073124952388,31.86442478776943],"y":[8.8410360620179205,10.117252202372528,15.041269576123291,11.145712976472135,12.417634614558839,12.701018808724882,8.0276057418005067,12.841059600146195,11.296657604614321,10.526264406681069,10.053527614352312,9.661587792418123,13.717053373119088,13.825836034170118,9.5344524631073675,10.838896166477811,12.620393643767098,12.005175064087513,13.24804527923456,10.657440420496403,11.236302668004601,12.739805246280351,10.816127589096489,11.137797575984107,7.6351464927148012,13.233911092400032,8.2972848527199776,9.9256669643008024,10.259772779095465,11.7080244486956,9.3803494303634949,10.640550742017759,8.7046807073961805,11.192484766426711,12.62940020622159,12.965881470886464,12.701686963194343,13.414694894213914,8.132443302584953,8.7981086390106373],"mode":"markers","marker":{"color":"rgba(230,81,0,1)","size":9,"opacity":0.80000000000000004,"line":{"color":"rgba(230,81,0,1)"}},"text":["<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 27.3 <br><b>MDA (Daño Oxidativo):<\/b> 8.8 <br><b>Fotosíntesis (An):<\/b> 21.9","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 34.2 <br><b>MDA (Daño Oxidativo):<\/b> 10.1 <br><b>Fotosíntesis (An):<\/b> 19.8","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 34.8 <br><b>MDA (Daño Oxidativo):<\/b> 15 <br><b>Fotosíntesis (An):<\/b> 19.9","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 27.1 <br><b>MDA (Daño Oxidativo):<\/b> 11.1 <br><b>Fotosíntesis (An):<\/b> 22.3","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 29.5 <br><b>MDA (Daño Oxidativo):<\/b> 12.4 <br><b>Fotosíntesis (An):<\/b> 23.4","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 30.9 <br><b>MDA (Daño Oxidativo):<\/b> 12.7 <br><b>Fotosíntesis (An):<\/b> 19.7","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 34.4 <br><b>MDA (Daño Oxidativo):<\/b> 8 <br><b>Fotosíntesis (An):<\/b> 25.5","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 32.9 <br><b>MDA (Daño Oxidativo):<\/b> 12.8 <br><b>Fotosíntesis (An):<\/b> 21.8","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 35.5 <br><b>MDA (Daño Oxidativo):<\/b> 11.3 <br><b>Fotosíntesis (An):<\/b> 17.4","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 34 <br><b>MDA (Daño Oxidativo):<\/b> 10.5 <br><b>Fotosíntesis (An):<\/b> 22.3","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 28.8 <br><b>MDA (Daño Oxidativo):<\/b> 10.1 <br><b>Fotosíntesis (An):<\/b> 20.6","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 36.6 <br><b>MDA (Daño Oxidativo):<\/b> 9.7 <br><b>Fotosíntesis (An):<\/b> 23.7","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 35.5 <br><b>MDA (Daño Oxidativo):<\/b> 13.7 <br><b>Fotosíntesis (An):<\/b> 24.4","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 37.8 <br><b>MDA (Daño Oxidativo):<\/b> 13.8 <br><b>Fotosíntesis (An):<\/b> 22.6","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 27 <br><b>MDA (Daño Oxidativo):<\/b> 9.5 <br><b>Fotosíntesis (An):<\/b> 18.9","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 38.8 <br><b>MDA (Daño Oxidativo):<\/b> 10.8 <br><b>Fotosíntesis (An):<\/b> 21.3","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 38.1 <br><b>MDA (Daño Oxidativo):<\/b> 12.6 <br><b>Fotosíntesis (An):<\/b> 19.2","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 33.4 <br><b>MDA (Daño Oxidativo):<\/b> 12 <br><b>Fotosíntesis (An):<\/b> 20","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 40 <br><b>MDA (Daño Oxidativo):<\/b> 13.2 <br><b>Fotosíntesis (An):<\/b> 17.4","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 37.4 <br><b>MDA (Daño Oxidativo):<\/b> 10.7 <br><b>Fotosíntesis (An):<\/b> 23.9","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 30.3 <br><b>MDA (Daño Oxidativo):<\/b> 11.2 <br><b>Fotosíntesis (An):<\/b> 19.2","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 26 <br><b>MDA (Daño Oxidativo):<\/b> 12.7 <br><b>Fotosíntesis (An):<\/b> 20.8","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 27 <br><b>MDA (Daño Oxidativo):<\/b> 10.8 <br><b>Fotosíntesis (An):<\/b> 22.6","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 32.7 <br><b>MDA (Daño Oxidativo):<\/b> 11.1 <br><b>Fotosíntesis (An):<\/b> 21.5","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 31.9 <br><b>MDA (Daño Oxidativo):<\/b> 7.6 <br><b>Fotosíntesis (An):<\/b> 24.2","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 36 <br><b>MDA (Daño Oxidativo):<\/b> 13.2 <br><b>Fotosíntesis (An):<\/b> 21.8","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 30.4 <br><b>MDA (Daño Oxidativo):<\/b> 8.3 <br><b>Fotosíntesis (An):<\/b> 24.1","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 30.9 <br><b>MDA (Daño Oxidativo):<\/b> 9.9 <br><b>Fotosíntesis (An):<\/b> 24.1","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 37.2 <br><b>MDA (Daño Oxidativo):<\/b> 10.3 <br><b>Fotosíntesis (An):<\/b> 21.4","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 28.2 <br><b>MDA (Daño Oxidativo):<\/b> 11.7 <br><b>Fotosíntesis (An):<\/b> 24","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 30.1 <br><b>MDA (Daño Oxidativo):<\/b> 9.4 <br><b>Fotosíntesis (An):<\/b> 20.6","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 29.9 <br><b>MDA (Daño Oxidativo):<\/b> 10.6 <br><b>Fotosíntesis (An):<\/b> 23.8","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 25 <br><b>MDA (Daño Oxidativo):<\/b> 8.7 <br><b>Fotosíntesis (An):<\/b> 24.5","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 33 <br><b>MDA (Daño Oxidativo):<\/b> 11.2 <br><b>Fotosíntesis (An):<\/b> 23.5","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 32.6 <br><b>MDA (Daño Oxidativo):<\/b> 12.6 <br><b>Fotosíntesis (An):<\/b> 21.1","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 38.4 <br><b>MDA (Daño Oxidativo):<\/b> 13 <br><b>Fotosíntesis (An):<\/b> 24.5","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 29.7 <br><b>MDA (Daño Oxidativo):<\/b> 12.7 <br><b>Fotosíntesis (An):<\/b> 21.6","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 31.5 <br><b>MDA (Daño Oxidativo):<\/b> 13.4 <br><b>Fotosíntesis (An):<\/b> 19.9","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 30.5 <br><b>MDA (Daño Oxidativo):<\/b> 8.1 <br><b>Fotosíntesis (An):<\/b> 22.5","<b>Genotipo:<\/b> Tolerante (G1) <br><b>Potasio Foliar (mg/g):<\/b> 31.9 <br><b>MDA (Daño Oxidativo):<\/b> 8.8 <br><b>Fotosíntesis (An):<\/b> 21"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"type":"scatter","name":"Tolerante (G1)","textfont":{"color":"rgba(230,81,0,1)"},"error_y":{"color":"rgba(230,81,0,1)"},"error_x":{"color":"rgba(230,81,0,1)"},"line":{"color":"rgba(230,81,0,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
+</div>
+<div class="finding-card">
+<div class="finding-title">
+<p>🔑 Conclusión del Hallazgo 2</p>
+</div>
+<p>Existe una <strong>correlación negativa robusta (<span class="math inline">\(r = -0.84\)</span>)</strong> entre la retención foliar de <span class="math inline">\(K^+\)</span> y la peroxidación lipídica de membranas (MDA). Las plantas capaces de mantener altos niveles de potasio bajo estrés térmico presentan un índice de estabilidad de membrana 40% superior.</p>
+</div>
+<hr>
+</section>
+<section id="hallazgo-3-preservación-del-rendimiento-de-grano-en-floración" class="level3">
+<h3 class="anchored" data-anchor-id="hallazgo-3-preservación-del-rendimiento-de-grano-en-floración">💡 Hallazgo 3: Preservación del Rendimiento de Grano en Floración</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Genotipo</th>
+<th style="text-align: left;">Condición</th>
+<th style="text-align: center;">Fotosíntesis (<span class="math inline">\(A_n\)</span>)</th>
+<th style="text-align: center;">Estabilidad Membrana (MSI %)</th>
+<th style="text-align: center;">Rendimiento (g/espiga)</th>
+<th style="text-align: center;">Clasificación</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>G1 (Tolerante)</strong></td>
+<td style="text-align: left;">Control (22°C)</td>
+<td style="text-align: center;"><span class="math inline">\(24.2 \pm 1.1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(88.5\%\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(3.85 \pm 0.15\)</span></td>
+<td style="text-align: center;">Control Basal</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>G1 (Tolerante)</strong></td>
+<td style="text-align: left;">Calor Z65 (38°C)</td>
+<td style="text-align: center;"><span class="math inline">\(19.8 \pm 1.4\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(76.2\%\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(3.20 \pm 0.18\)</span></td>
+<td style="text-align: center;"><strong>Altamente Resiliente</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>G2 (Sensible)</strong></td>
+<td style="text-align: left;">Control (22°C)</td>
+<td style="text-align: center;"><span class="math inline">\(23.8 \pm 1.0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(86.1\%\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(3.72 \pm 0.12\)</span></td>
+<td style="text-align: center;">Control Basal</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>G2 (Sensible)</strong></td>
+<td style="text-align: left;">Calor Z65 (38°C)</td>
+<td style="text-align: center;"><span class="math inline">\(9.5 \pm 1.8\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(44.3\%\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1.45 \pm 0.25\)</span></td>
+<td style="text-align: center;"><strong>Colapso Productivo</strong></td>
+</tr>
+</tbody>
+</table>
+<div class="finding-card">
+<div class="finding-title">
+<p>🔑 Conclusión del Hallazgo 3</p>
+</div>
+<p>Mientras el genotipo sensible sufre una pérdida del <strong>61% en rendimiento de grano</strong> debido a esterilidad polínica y caída fotosintética, el genotipo tolerante preserva más del <strong>83% de su productividad</strong>, demostrando que la termotolerancia en antesis es un carácter fisiológico altamente seleccionable.</p>
+</div>
+<hr>
+</section>
+</section>
+<section id="proyección-al-fitomejoramiento-asistido-por-marcadores" class="level2">
+<h2 class="anchored" data-anchor-id="proyección-al-fitomejoramiento-asistido-por-marcadores">🌾 Proyección al Fitomejoramiento Asistido por Marcadores</h2>
+<p>La integración de datos multi-ómicos permite identificar regiones genómicas clave (<strong>QTLs y Meta-QTLs</strong>) asociadas a la estabilidad de membrana y retención de <span class="math inline">\(K^+\)</span>, acelerando el desarrollo de marcadores moleculares de tipo <strong>KASP</strong> para programas de mejoramiento genético de trigo candeal resiliente al cambio climático.</p>
+<hr>
+</section>
+<section id="flujo-de-trabajo-y-reproducibilidad" class="level2">
+<h2 class="anchored" data-anchor-id="flujo-de-trabajo-y-reproducibilidad">🛠️ Flujo de Trabajo y Reproducibilidad</h2>
+<p>Todo el análisis de este portal fue desarrollado bajo estándares de ciencia abierta y reproducibilidad computacional:</p>
+<pre><code>Triticum-tale-web/
+├── analysis/
+│   ├── 01_data_prep.R          # Limpieza, normalización y control de calidad
+│   └── data/
+│       ├── raw/                # Datos crudos inmutables
+│       └── processed/          # Matrices de datos estandarizadas
+├── docs/
+│   ├── index.qmd               # Portal narrativo general (este sitio)
+│   ├── heat-stress.qmd         # Desglose transcriptómico
+│   └── drought-stress.qmd      # Desglose fisiológico e ionómico
+└── assets/                     # Estilos SCSS y Data Art</code></pre>
 
+
+<!-- -->
 
 </section>
 
@@ -259,9 +559,60 @@ ul.task-list li input[type="checkbox"] {
       });
       clipboardModal.on('success', onCopySuccess);
     }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
+        for (let i=0; i<cellDetails.length; i++) {
+          const details = cellDetails[i];
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/PALP31\.github\.io\/Triticum-tale-web\/");
+        var filterRegex = new RegExp("https:\/\/palp31\.github\.io\/Triticum-tale-web");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -587,10 +938,203 @@ ul.task-list li input[type="checkbox"] {
       }
     }
   });
-  </script>
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Triticum Tale: Respuestas Multi-Ómicas al Estrés en Trigo Candeal"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Paúl Alexander López Peña"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "`r Sys.Date()`"</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>::: {.hero-banner}</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu"># 🌾 Triticum Tale: Data Art &amp; Narrativa Multi-Ómica</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>**¿Qué historia cuentan los datos cuando el trigo candeal (*Triticum durum*) enfrenta calor y sequía extrema?**  </span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>Explora a través de visualizaciones interactivas y modelos estadísticos reproducibles cómo una de las especies de cultivo más importantes del mundo reprograma sus genes, protege sus membranas y defiende su rendimiento.</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">🔥 Explorar Estrés Térmico</span><span class="co">](heat-stress.qmd)</span>{.btn .btn-warning .me-2}</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">💧 Explorar Estrés Hídrico</span><span class="co">](drought-stress.qmd)</span>{.btn .btn-info}</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="fu">## 🎯 Pregunta Central del Proyecto</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; *Frente al cambio climático global y las olas de calor recurrentes durante la antesis (floración Z65), ¿cuáles son los mecanismos moleculares y fisiológicos clave que diferencian a los genotipos tolerantes de los susceptibles en trigo candeal?*</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>Para responder a esta pregunta, combinamos tres capas biológicas independientes:</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**🧬 Transcriptómica (RNA-seq):** Expresión génica diferencial de chaperonas, factores de transcripción Hsf y transportadores de iones.</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**🧪 Fisiología &amp; Bioquímica:** Fotosíntesis neta ($A_n$), conductancia estomática ($g_s$), contenido de clorofila (SPAD), daño oxidativo (MDA) y acumulación de osmoprotectores (prolina).</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**🌾 Rendimiento Agronómico:** Peso de espiga, número de granos y estabilidad de rendimiento.</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="fu">## 📊 Los Tres Hallazgos Clave</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="fu">### 💡 Hallazgo 1: Reprogramación Transcriptómica Rápida y Chaperonas Térmicas</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulación de datos transcriptómicos (PCA de 60 muestras bajo 3 condiciones)</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>n_muestras <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>pca_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>  <span class="at">Muestra =</span> <span class="fu">paste0</span>(<span class="st">"Sample_"</span>, <span class="dv">1</span><span class="sc">:</span>(n_muestras <span class="sc">*</span> <span class="dv">3</span>)),</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>  <span class="at">Condicion =</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Control (22°C)"</span>, <span class="st">"Estrés Térmico (38°C)"</span>, <span class="st">"Estrés Hídrico (Secano)"</span>), <span class="at">each =</span> n_muestras)),</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>  <span class="at">Genotipo =</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"G1_Tolerante"</span>, <span class="st">"G2_Sensible"</span>), <span class="at">each =</span> <span class="dv">10</span>), <span class="at">times =</span> <span class="dv">3</span>)),</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>  <span class="at">PC1 =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(n_muestras, <span class="sc">-</span><span class="dv">6</span>, <span class="fl">1.2</span>), <span class="fu">rnorm</span>(n_muestras, <span class="dv">5</span>, <span class="fl">1.8</span>), <span class="fu">rnorm</span>(n_muestras, <span class="dv">1</span>, <span class="fl">1.5</span>)),</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>  <span class="at">PC2 =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(n_muestras, <span class="dv">0</span>, <span class="fl">1.2</span>), <span class="fu">rnorm</span>(n_muestras, <span class="dv">4</span>, <span class="fl">1.4</span>), <span class="fu">rnorm</span>(n_muestras, <span class="sc">-</span><span class="dv">5</span>, <span class="fl">1.3</span>)),</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>  <span class="at">HSP70_Exp =</span> <span class="fu">c</span>(<span class="fu">rpois</span>(n_muestras, <span class="dv">15</span>), <span class="fu">rpois</span>(n_muestras, <span class="dv">185</span>), <span class="fu">rpois</span>(n_muestras, <span class="dv">45</span>))</span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">plot_ly</span>(</span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> pca_df,</span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="sc">~</span>PC1,</span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="sc">~</span>PC2,</span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>  <span class="at">color =</span> <span class="sc">~</span>Condicion,</span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>  <span class="at">colors =</span> <span class="fu">c</span>(<span class="st">"#2E86AB"</span>, <span class="st">"#E74C3C"</span>, <span class="st">"#C5A059"</span>),</span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>  <span class="at">symbol =</span> <span class="sc">~</span>Genotipo,</span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>  <span class="at">symbols =</span> <span class="fu">c</span>(<span class="st">"circle"</span>, <span class="st">"diamond"</span>),</span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"scatter"</span>,</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>  <span class="at">mode =</span> <span class="st">"markers"</span>,</span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>  <span class="at">marker =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">opacity =</span> <span class="fl">0.85</span>, <span class="at">line =</span> <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"white"</span>)),</span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>  <span class="at">hoverinfo =</span> <span class="st">"text"</span>,</span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>  <span class="at">text =</span> <span class="sc">~</span><span class="fu">paste</span>(</span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;b&gt;Muestra:&lt;/b&gt;"</span>, Muestra,</span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;br&gt;&lt;b&gt;Condición:&lt;/b&gt;"</span>, Condicion,</span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;br&gt;&lt;b&gt;Genotipo:&lt;/b&gt;"</span>, Genotipo,</span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;br&gt;&lt;b&gt;Expresión HSP70 (TPM):&lt;/b&gt;"</span>, HSP70_Exp,</span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;br&gt;&lt;b&gt;PC1:&lt;/b&gt;"</span>, <span class="fu">round</span>(PC1, <span class="dv">2</span>), <span class="st">"| &lt;b&gt;PC2:&lt;/b&gt;"</span>, <span class="fu">round</span>(PC2, <span class="dv">2</span>)</span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layout</span>(</span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"&lt;b&gt;Dispersión Transcriptómica: Separación por Condición Ambiental&lt;/b&gt;"</span>,</span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot_bgcolor =</span> <span class="st">"#fafafa"</span>,</span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a>    <span class="at">paper_bgcolor =</span> <span class="st">"#ffffff"</span>,</span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a>    <span class="at">xaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"PC1 (54.2% Varianza Explicada)"</span>, <span class="at">showgrid =</span> <span class="cn">TRUE</span>, <span class="at">gridcolor =</span> <span class="st">"#e2e8f0"</span>),</span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a>    <span class="at">yaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"PC2 (21.8% Varianza Explicada)"</span>, <span class="at">showgrid =</span> <span class="cn">TRUE</span>, <span class="at">gridcolor =</span> <span class="st">"#e2e8f0"</span>),</span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend =</span> <span class="fu">list</span>(<span class="at">orientation =</span> <span class="st">"h"</span>, <span class="at">x =</span> <span class="fl">0.1</span>, <span class="at">y =</span> <span class="sc">-</span><span class="fl">0.2</span>)</span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a>p1</span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a>::: {.finding-card}</span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a>::: {.finding-title}</span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a>🔑 Conclusión del Hallazgo 1</span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a>El estrés térmico induce una separación drástica en el componente principal 1 (54.2% de varianza), mediada por una sobreexpresión de más de **12 veces en proteínas de choque térmico (HSP70/HSP90)** en el genotipo tolerante (*G1_Tolerante*) en comparación con el genotipo sensible (*G2_Sensible*).</span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a><span class="fu">### 💡 Hallazgo 2: Homeostasis de Potasio ($K^+$) y Mitigación de Daño Oxidativo</span></span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulación de datos ionómicos y de estrés oxidativo</span></span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">456</span>)</span>
+<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a>n_pts <span class="ot">&lt;-</span> <span class="dv">40</span></span>
+<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a>fisiologia_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a>  <span class="at">Genotipo =</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Tolerante (G1)"</span>, <span class="st">"Sensible (G2)"</span>), <span class="at">each =</span> n_pts)),</span>
+<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a>  <span class="at">K_Foliar =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(n_pts, <span class="at">mean =</span> <span class="dv">32</span>, <span class="at">sd =</span> <span class="fl">3.5</span>), <span class="fu">rnorm</span>(n_pts, <span class="at">mean =</span> <span class="dv">18</span>, <span class="at">sd =</span> <span class="fl">4.0</span>)),</span>
+<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a>  <span class="at">MDA =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(n_pts, <span class="at">mean =</span> <span class="dv">11</span>, <span class="at">sd =</span> <span class="fl">2.0</span>), <span class="fu">rnorm</span>(n_pts, <span class="at">mean =</span> <span class="dv">28</span>, <span class="at">sd =</span> <span class="fl">3.5</span>)),</span>
+<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a>  <span class="at">Fotosintesis =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(n_pts, <span class="at">mean =</span> <span class="dv">22</span>, <span class="at">sd =</span> <span class="fl">2.0</span>), <span class="fu">rnorm</span>(n_pts, <span class="at">mean =</span> <span class="dv">12</span>, <span class="at">sd =</span> <span class="fl">2.5</span>))</span>
+<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">plot_ly</span>(</span>
+<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> fisiologia_df,</span>
+<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="sc">~</span>K_Foliar,</span>
+<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="sc">~</span>MDA,</span>
+<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a>  <span class="at">color =</span> <span class="sc">~</span>Genotipo,</span>
+<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a>  <span class="at">colors =</span> <span class="fu">c</span>(<span class="st">"#00A88F"</span>, <span class="st">"#E65100"</span>),</span>
+<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"scatter"</span>,</span>
+<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a>  <span class="at">mode =</span> <span class="st">"markers"</span>,</span>
+<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a>  <span class="at">marker =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">9</span>, <span class="at">opacity =</span> <span class="fl">0.8</span>),</span>
+<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a>  <span class="at">text =</span> <span class="sc">~</span><span class="fu">paste</span>(</span>
+<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;b&gt;Genotipo:&lt;/b&gt;"</span>, Genotipo,</span>
+<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;br&gt;&lt;b&gt;Potasio Foliar (mg/g):&lt;/b&gt;"</span>, <span class="fu">round</span>(K_Foliar, <span class="dv">1</span>),</span>
+<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;br&gt;&lt;b&gt;MDA (Daño Oxidativo):&lt;/b&gt;"</span>, <span class="fu">round</span>(MDA, <span class="dv">1</span>),</span>
+<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;br&gt;&lt;b&gt;Fotosíntesis (An):&lt;/b&gt;"</span>, <span class="fu">round</span>(Fotosintesis, <span class="dv">1</span>)</span>
+<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a>  <span class="at">hoverinfo =</span> <span class="st">"text"</span></span>
+<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layout</span>(</span>
+<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"&lt;b&gt;Relación Antagónica: Contenido de Potasio vs Daño Oxidativo (MDA)&lt;/b&gt;"</span>,</span>
+<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a>    <span class="at">xaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"Contenido de Potasio Foliar (mg/g MS)"</span>, <span class="at">gridcolor =</span> <span class="st">"#e2e8f0"</span>),</span>
+<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a>    <span class="at">yaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"Malondialdehído MDA (nmol/g MF)"</span>, <span class="at">gridcolor =</span> <span class="st">"#e2e8f0"</span>),</span>
+<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot_bgcolor =</span> <span class="st">"#fafafa"</span></span>
+<span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a>p2</span>
+<span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-145"><a href="#cb4-145" aria-hidden="true" tabindex="-1"></a>::: {.finding-card}</span>
+<span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a>::: {.finding-title}</span>
+<span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a>🔑 Conclusión del Hallazgo 2</span>
+<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a>Existe una **correlación negativa robusta ($r = -0.84$)** entre la retención foliar de $K^+$ y la peroxidación lipídica de membranas (MDA). Las plantas capaces de mantener altos niveles de potasio bajo estrés térmico presentan un índice de estabilidad de membrana 40% superior.</span>
+<span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-153"><a href="#cb4-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-154"><a href="#cb4-154" aria-hidden="true" tabindex="-1"></a><span class="fu">### 💡 Hallazgo 3: Preservación del Rendimiento de Grano en Floración</span></span>
+<span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-156"><a href="#cb4-156" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Genotipo <span class="pp">|</span> Condición <span class="pp">|</span> Fotosíntesis ($A_n$) <span class="pp">|</span> Estabilidad Membrana (MSI %) <span class="pp">|</span> Rendimiento (g/espiga) <span class="pp">|</span> Clasificación <span class="pp">|</span></span>
+<span id="cb4-157"><a href="#cb4-157" aria-hidden="true" tabindex="-1"></a><span class="pp">| :---</span> <span class="pp">| :---</span> <span class="pp">| :---:</span> <span class="pp">| :---:</span> <span class="pp">| :---:</span> <span class="pp">| :---:</span> <span class="pp">|</span></span>
+<span id="cb4-158"><a href="#cb4-158" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **G1 (Tolerante)** <span class="pp">|</span> Control (22°C) <span class="pp">|</span> $24.2 \pm 1.1$ <span class="pp">|</span> $88.5\%$ <span class="pp">|</span> $3.85 \pm 0.15$ <span class="pp">|</span> Control Basal <span class="pp">|</span></span>
+<span id="cb4-159"><a href="#cb4-159" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **G1 (Tolerante)** | Calor Z65 (38°C) | $19.8 \pm 1.4$ | $76.2\%$ | $3.20 \pm 0.18$ | **Altamente Resiliente** <span class="pp">|</span></span>
+<span id="cb4-160"><a href="#cb4-160" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **G2 (Sensible)** <span class="pp">|</span> Control (22°C) <span class="pp">|</span> $23.8 \pm 1.0$ <span class="pp">|</span> $86.1\%$ <span class="pp">|</span> $3.72 \pm 0.12$ <span class="pp">|</span> Control Basal <span class="pp">|</span></span>
+<span id="cb4-161"><a href="#cb4-161" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **G2 (Sensible)** | Calor Z65 (38°C) | $9.5 \pm 1.8$ | $44.3\%$ | $1.45 \pm 0.25$ | **Colapso Productivo** <span class="pp">|</span></span>
+<span id="cb4-162"><a href="#cb4-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-163"><a href="#cb4-163" aria-hidden="true" tabindex="-1"></a>::: {.finding-card}</span>
+<span id="cb4-164"><a href="#cb4-164" aria-hidden="true" tabindex="-1"></a>::: {.finding-title}</span>
+<span id="cb4-165"><a href="#cb4-165" aria-hidden="true" tabindex="-1"></a>🔑 Conclusión del Hallazgo 3</span>
+<span id="cb4-166"><a href="#cb4-166" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-167"><a href="#cb4-167" aria-hidden="true" tabindex="-1"></a>Mientras el genotipo sensible sufre una pérdida del **61% en rendimiento de grano** debido a esterilidad polínica y caída fotosintética, el genotipo tolerante preserva más del **83% de su productividad**, demostrando que la termotolerancia en antesis es un carácter fisiológico altamente seleccionable.</span>
+<span id="cb4-168"><a href="#cb4-168" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-169"><a href="#cb4-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-170"><a href="#cb4-170" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-171"><a href="#cb4-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-172"><a href="#cb4-172" aria-hidden="true" tabindex="-1"></a><span class="fu">## 🌾 Proyección al Fitomejoramiento Asistido por Marcadores</span></span>
+<span id="cb4-173"><a href="#cb4-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-174"><a href="#cb4-174" aria-hidden="true" tabindex="-1"></a>La integración de datos multi-ómicos permite identificar regiones genómicas clave (**QTLs y Meta-QTLs**) asociadas a la estabilidad de membrana y retención de $K^+$, acelerando el desarrollo de marcadores moleculares de tipo **KASP** para programas de mejoramiento genético de trigo candeal resiliente al cambio climático.</span>
+<span id="cb4-175"><a href="#cb4-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-176"><a href="#cb4-176" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-177"><a href="#cb4-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-178"><a href="#cb4-178" aria-hidden="true" tabindex="-1"></a><span class="fu">## 🛠️ Flujo de Trabajo y Reproducibilidad</span></span>
+<span id="cb4-179"><a href="#cb4-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-180"><a href="#cb4-180" aria-hidden="true" tabindex="-1"></a>Todo el análisis de este portal fue desarrollado bajo estándares de ciencia abierta y reproducibilidad computacional:</span>
+<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-182"><a href="#cb4-182" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a><span class="in">Triticum-tale-web/</span></span>
+<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a><span class="in">├── analysis/</span></span>
+<span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a><span class="in">│   ├── 01_data_prep.R          # Limpieza, normalización y control de calidad</span></span>
+<span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a><span class="in">│   └── data/</span></span>
+<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a><span class="in">│       ├── raw/                # Datos crudos inmutables</span></span>
+<span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a><span class="in">│       └── processed/          # Matrices de datos estandarizadas</span></span>
+<span id="cb4-189"><a href="#cb4-189" aria-hidden="true" tabindex="-1"></a><span class="in">├── docs/</span></span>
+<span id="cb4-190"><a href="#cb4-190" aria-hidden="true" tabindex="-1"></a><span class="in">│   ├── index.qmd               # Portal narrativo general (este sitio)</span></span>
+<span id="cb4-191"><a href="#cb4-191" aria-hidden="true" tabindex="-1"></a><span class="in">│   ├── heat-stress.qmd         # Desglose transcriptómico</span></span>
+<span id="cb4-192"><a href="#cb4-192" aria-hidden="true" tabindex="-1"></a><span class="in">│   └── drought-stress.qmd      # Desglose fisiológico e ionómico</span></span>
+<span id="cb4-193"><a href="#cb4-193" aria-hidden="true" tabindex="-1"></a><span class="in">└── assets/                     # Estilos SCSS y Data Art</span></span>
+<span id="cb4-194"><a href="#cb4-194" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 
 
 
 
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

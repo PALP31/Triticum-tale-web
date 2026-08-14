@@ -2,26 +2,66 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Paúl Alexander López Peña">
+<meta name="dcterms.date" content="2026-08-14">
 
-<title>Estrés Hídrico – Triticum Tale</title>
+<title>💧 Estrés Hídrico: Ajuste Osmótico y Homeostasis Ionómica – Triticum Tale</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -39,10 +79,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-55decfc11e953f449a0092b646736684.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-1cfc937ed154677afd27bc320e817379.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -70,7 +110,46 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link href="site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.12.1/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="site_libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="site_libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
+<script src="site_libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="site_libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -81,10 +160,6 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./logo-placeholder.svg" alt="" class="navbar-logo light-content">
-    <img src="./logo-placeholder.svg" alt="" class="navbar-logo dark-content">
-    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Triticum Tale</span>
     </a>
@@ -97,15 +172,32 @@ ul.task-list li input[type="checkbox"] {
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="./index.html"> 
-<span class="menu-text">Home</span></a>
+<span class="menu-text">🌾 Inicio &amp; Historia</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./heat-stress.html"> 
-<span class="menu-text">Estrés Térmico</span></a>
+<span class="menu-text">🔥 Estrés Térmico</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./drought-stress.html" aria-current="page"> 
-<span class="menu-text">Estrés Hídrico</span></a>
+<span class="menu-text">💧 Estrés Hídrico</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/PALP31/Triticum-tale-web"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/PALP31/easyModels"> <i class="bi bi-box-seam" role="img">
+</i> 
+<span class="menu-text">easyModels</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/PALP31/BioAgro-Stats"> <i class="bi bi-bar-chart-line" role="img">
+</i> 
+<span class="menu-text">BioAgro-Stats</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -115,25 +207,46 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#mecanismos-de-ajuste-osmótico-en-secano" id="toc-mecanismos-de-ajuste-osmótico-en-secano" class="nav-link active" data-scroll-target="#mecanismos-de-ajuste-osmótico-en-secano">Mecanismos de Ajuste Osmótico en Secano</a>
+  <ul class="collapse">
+  <li><a href="#factores-determinantes-de-la-tolerancia-a-sequía" id="toc-factores-determinantes-de-la-tolerancia-a-sequía" class="nav-link" data-scroll-target="#factores-determinantes-de-la-tolerancia-a-sequía">Factores Determinantes de la Tolerancia a Sequía</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page-left" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Estrés Hídrico</h1>
+<div class="quarto-title-block"><div><h1 class="title">💧 Estrés Hídrico: Ajuste Osmótico y Homeostasis Ionómica</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 </div>
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page-left">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Paúl Alexander López Peña </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 14, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -143,9 +256,72 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Cuando el agua escasea y el suelo se vuelve silencio, <em>Triticum durum</em> activa una estrategia precisa: reduce pérdidas, ajusta su crecimiento y dirige su energía hacia sobrevivir sin perder su identidad productiva. En el déficit hídrico, la planta escribe una narrativa de ahorro, equilibrio y perseverancia.</p>
+<section id="mecanismos-de-ajuste-osmótico-en-secano" class="level1">
+<h1>Mecanismos de Ajuste Osmótico en Secano</h1>
+<p>Bajo déficit hídrico, el trigo candeal (<em>Triticum durum</em>) activa rutas de biosíntesis de solutos compatibles como <strong>prolina</strong> y regula la absorción selectiva de nutrientes minerales en la rizósfera.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulación de respuesta dinámica de prolina vs potencial hídrico foliar</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">999</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>n_obs <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>drought_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Potencial_Hidrico =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="sc">-</span><span class="fl">3.0</span>, <span class="at">length.out =</span> n_obs),</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">Genotipo_Tol =</span> <span class="dv">2</span> <span class="sc">+</span> (<span class="fu">abs</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="sc">-</span><span class="fl">3.0</span>, <span class="at">length.out =</span> n_obs))<span class="sc">^</span><span class="fl">2.2</span>) <span class="sc">*</span> <span class="fl">2.8</span> <span class="sc">+</span> <span class="fu">rnorm</span>(n_obs, <span class="dv">0</span>, <span class="fl">0.8</span>),</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">Genotipo_Sen =</span> <span class="dv">2</span> <span class="sc">+</span> (<span class="fu">abs</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="sc">-</span><span class="fl">3.0</span>, <span class="at">length.out =</span> n_obs))<span class="sc">^</span><span class="fl">1.4</span>) <span class="sc">*</span> <span class="fl">1.2</span> <span class="sc">+</span> <span class="fu">rnorm</span>(n_obs, <span class="dv">0</span>, <span class="fl">0.6</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>p_drought <span class="ot">&lt;-</span> <span class="fu">plot_ly</span>(<span class="at">data =</span> drought_data) <span class="sc">%&gt;%</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_trace</span>(</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="sc">~</span>Potencial_Hidrico,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="sc">~</span>Genotipo_Tol,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Genotipo Tolerante (G1)"</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"scatter"</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">mode =</span> <span class="st">"lines+markers"</span>,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">line =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">"#00A88F"</span>, <span class="at">width =</span> <span class="dv">3</span>),</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">marker =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">7</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_trace</span>(</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="sc">~</span>Potencial_Hidrico,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="sc">~</span>Genotipo_Sen,</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Genotipo Sensible (G2)"</span>,</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"scatter"</span>,</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">mode =</span> <span class="st">"lines+markers"</span>,</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">line =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">"#E65100"</span>, <span class="at">width =</span> <span class="dv">3</span>, <span class="at">dash =</span> <span class="st">"dash"</span>),</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">marker =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">7</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layout</span>(</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"&lt;b&gt;Acumulación de Prolina en Respuesta al Descenso del Potencial Hídrico (\u03A8w)&lt;/b&gt;"</span>,</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">xaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"Potencial Hídrico Foliar \u03A8w (MPa)"</span>, <span class="at">gridcolor =</span> <span class="st">"#e2e8f0"</span>),</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">yaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"Contenido de Prolina Libre (\u03BCmol/g MF)"</span>, <span class="at">gridcolor =</span> <span class="st">"#e2e8f0"</span>),</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend =</span> <span class="fu">list</span>(<span class="at">orientation =</span> <span class="st">"h"</span>, <span class="at">x =</span> <span class="fl">0.2</span>, <span class="at">y =</span> <span class="sc">-</span><span class="fl">0.2</span>),</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot_bgcolor =</span> <span class="st">"#fafafa"</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>p_drought</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-a3f909c9d8059bdf2d32" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-a3f909c9d8059bdf2d32">{"x":{"visdat":{"1a4e453a27d0":["function () ","plotlyVisDat"]},"cur_data":"1a4e453a27d0","attrs":{"1a4e453a27d0":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"name":"Genotipo Tolerante (G1)","type":"scatter","mode":"lines+markers","line":{"color":"#00A88F","width":3},"marker":{"size":7},"inherit":true},"1a4e453a27d0.1":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"name":"Genotipo Sensible (G2)","type":"scatter","mode":"lines+markers","line":{"color":"#E65100","width":3,"dash":"dash"},"marker":{"size":7},"inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"<b>Acumulación de Prolina en Respuesta al Descenso del Potencial Hídrico (Ψw)<\/b>","xaxis":{"domain":[0,1],"automargin":true,"title":"Potencial Hídrico Foliar Ψw (MPa)","gridcolor":"#e2e8f0"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Contenido de Prolina Libre (μmol/g MF)","gridcolor":"#e2e8f0"},"legend":{"orientation":"h","x":0.20000000000000001,"y":-0.20000000000000001},"plot_bgcolor":"#fafafa","hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[-0.5,-0.55102040816326525,-0.60204081632653061,-0.65306122448979598,-0.70408163265306123,-0.75510204081632648,-0.80612244897959184,-0.85714285714285721,-0.90816326530612246,-0.95918367346938771,-1.010204081632653,-1.0612244897959184,-1.1122448979591837,-1.1632653061224489,-1.2142857142857144,-1.2653061224489797,-1.3163265306122449,-1.3673469387755102,-1.4183673469387754,-1.4693877551020409,-1.5204081632653061,-1.5714285714285714,-1.6224489795918369,-1.6734693877551021,-1.7244897959183674,-1.7755102040816326,-1.8265306122448979,-1.8775510204081634,-1.9285714285714286,-1.9795918367346939,-2.0306122448979593,-2.0816326530612246,-2.1326530612244898,-2.1836734693877551,-2.2346938775510203,-2.2857142857142856,-2.3367346938775508,-2.3877551020408161,-2.4387755102040818,-2.489795918367347,-2.5408163265306123,-2.5918367346938775,-2.6428571428571428,-2.693877551020408,-2.7448979591836737,-2.795918367346939,-2.8469387755102042,-2.8979591836734695,-2.9489795918367347,-3],"y":[2.3839932671830488,1.7045699068466029,3.5530748810221611,3.3126775200469538,3.0721381415038,3.0564632023250451,2.2398441572503831,2.9812556322544266,3.4910635028689536,3.6579044799796301,5.9236132134254671,5.2982348674891595,6.289334653871669,6.0433029317718274,7.0581625230020375,5.6086662817673059,7.1804252717081765,7.6535540690168782,8.7618586684211515,6.8696868854486253,8.0554928078971315,10.082873334456387,9.8317841239209098,10.927176689757388,10.385416073618195,12.414583416070597,11.652103757043692,12.488049977626419,12.63290013018001,14.47702985202373,17.208758909694744,16.530073307351877,16.961246895889921,18.473277311152337,18.224991587420941,17.567639889353778,19.821097045129701,21.417504586588205,22.31804661991324,21.709382885077456,23.39356458388426,24.762741727028498,24.727401094222532,25.884347356877022,28.058121209660726,29.106298356239808,28.335574399164663,31.102510426632598,32.695658077353229,33.364638569036543],"name":"Genotipo Tolerante (G1)","type":"scatter","mode":"lines+markers","line":{"color":"#00A88F","width":3},"marker":{"color":"rgba(31,119,180,1)","size":7,"line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[-0.5,-0.55102040816326525,-0.60204081632653061,-0.65306122448979598,-0.70408163265306123,-0.75510204081632648,-0.80612244897959184,-0.85714285714285721,-0.90816326530612246,-0.95918367346938771,-1.010204081632653,-1.0612244897959184,-1.1122448979591837,-1.1632653061224489,-1.2142857142857144,-1.2653061224489797,-1.3163265306122449,-1.3673469387755102,-1.4183673469387754,-1.4693877551020409,-1.5204081632653061,-1.5714285714285714,-1.6224489795918369,-1.6734693877551021,-1.7244897959183674,-1.7755102040816326,-1.8265306122448979,-1.8775510204081634,-1.9285714285714286,-1.9795918367346939,-2.0306122448979593,-2.0816326530612246,-2.1326530612244898,-2.1836734693877551,-2.2346938775510203,-2.2857142857142856,-2.3367346938775508,-2.3877551020408161,-2.4387755102040818,-2.489795918367347,-2.5408163265306123,-2.5918367346938775,-2.6428571428571428,-2.693877551020408,-2.7448979591836737,-2.795918367346939,-2.8469387755102042,-2.8979591836734695,-2.9489795918367347,-3],"y":[2.3847164815967803,2.1339846922957699,3.6363828466110135,2.8805276981448675,2.6941801261314988,2.9793886905968949,3.2280645999089739,2.1995356288034258,3.309823448362494,2.7926923946014335,2.6631909581314912,4.0030739639825965,4.017954875599604,4.1452641718221566,3.5636734427162033,2.9800522195019852,2.9182466440412456,3.6901681663521813,3.7067644761157954,4.65470417540444,4.0936029073615687,4.2177619585621873,4.9325866677428571,4.2175176253054918,5.1577933101710309,4.7179851932241768,5.1121204646079894,3.6598489102875762,5.2714762309689895,5.0255352176750678,4.8491328586138298,5.9404245700457841,4.7275871528962803,5.6324621793689849,4.9765621787108696,5.5916807266932018,6.7558147062168876,5.9067833394361076,6.7843321273732649,6.5656774117741605,7.4224727479913355,6.5689223287952778,6.0910288490138784,7.5754238685250934,6.2552324622369788,7.6899175612255828,6.8449530606043893,7.146159029755343,7.3090168554013175,7.7186127607669706],"name":"Genotipo Sensible (G2)","type":"scatter","mode":"lines+markers","line":{"color":"#E65100","width":3,"dash":"dash"},"marker":{"color":"rgba(255,127,14,1)","size":7,"line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<section id="factores-determinantes-de-la-tolerancia-a-sequía" class="level3">
+<h3 class="anchored" data-anchor-id="factores-determinantes-de-la-tolerancia-a-sequía">Factores Determinantes de la Tolerancia a Sequía</h3>
+<ol type="1">
+<li><strong>Ajuste Osmótico Activo:</strong> El genotipo tolerante acumula hasta <strong>3 veces más prolina</strong> que el sensible cuando el potencial hídrico desciende por debajo de <span class="math inline">\(-2.0\text{ MPa}\)</span>.</li>
+<li><strong>Eficiencia en el Uso del Agua (WUE):</strong> Coordinación estomática para maximizar la asimilación de <span class="math inline">\(\text{CO}_2\)</span> minimizando la transpiración.</li>
+<li><strong>Mantenimiento del Turgor Celular:</strong> Preservación de la presión de turgencia <span class="math inline">\(\Psi_p\)</span> en hojas bandera.</li>
+</ol>
 
 
+<!-- -->
+
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -219,9 +395,60 @@ ul.task-list li input[type="checkbox"] {
       });
       clipboardModal.on('success', onCopySuccess);
     }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
+        for (let i=0; i<cellDetails.length; i++) {
+          const details = cellDetails[i];
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/PALP31\.github\.io\/Triticum-tale-web\/");
+        var filterRegex = new RegExp("https:\/\/palp31\.github\.io\/Triticum-tale-web");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -547,10 +774,79 @@ ul.task-list li input[type="checkbox"] {
       }
     }
   });
-  </script>
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "💧 Estrés Hídrico: Ajuste Osmótico y Homeostasis Ionómica"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Paúl Alexander López Peña"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "`r Sys.Date()`"</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu"># Mecanismos de Ajuste Osmótico en Secano</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>Bajo déficit hídrico, el trigo candeal (*Triticum durum*) activa rutas de biosíntesis de solutos compatibles como **prolina** y regula la absorción selectiva de nutrientes minerales en la rizósfera.</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulación de respuesta dinámica de prolina vs potencial hídrico foliar</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">999</span>)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>n_obs <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>drought_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">Potencial_Hidrico =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="sc">-</span><span class="fl">3.0</span>, <span class="at">length.out =</span> n_obs),</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">Genotipo_Tol =</span> <span class="dv">2</span> <span class="sc">+</span> (<span class="fu">abs</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="sc">-</span><span class="fl">3.0</span>, <span class="at">length.out =</span> n_obs))<span class="sc">^</span><span class="fl">2.2</span>) <span class="sc">*</span> <span class="fl">2.8</span> <span class="sc">+</span> <span class="fu">rnorm</span>(n_obs, <span class="dv">0</span>, <span class="fl">0.8</span>),</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">Genotipo_Sen =</span> <span class="dv">2</span> <span class="sc">+</span> (<span class="fu">abs</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="sc">-</span><span class="fl">3.0</span>, <span class="at">length.out =</span> n_obs))<span class="sc">^</span><span class="fl">1.4</span>) <span class="sc">*</span> <span class="fl">1.2</span> <span class="sc">+</span> <span class="fu">rnorm</span>(n_obs, <span class="dv">0</span>, <span class="fl">0.6</span>)</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>p_drought <span class="ot">&lt;-</span> <span class="fu">plot_ly</span>(<span class="at">data =</span> drought_data) <span class="sc">%&gt;%</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_trace</span>(</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="sc">~</span>Potencial_Hidrico,</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="sc">~</span>Genotipo_Tol,</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Genotipo Tolerante (G1)"</span>,</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"scatter"</span>,</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">mode =</span> <span class="st">"lines+markers"</span>,</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">line =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">"#00A88F"</span>, <span class="at">width =</span> <span class="dv">3</span>),</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">marker =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">7</span>)</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_trace</span>(</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="sc">~</span>Potencial_Hidrico,</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="sc">~</span>Genotipo_Sen,</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Genotipo Sensible (G2)"</span>,</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"scatter"</span>,</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">mode =</span> <span class="st">"lines+markers"</span>,</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">line =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">"#E65100"</span>, <span class="at">width =</span> <span class="dv">3</span>, <span class="at">dash =</span> <span class="st">"dash"</span>),</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">marker =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">7</span>)</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layout</span>(</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"&lt;b&gt;Acumulación de Prolina en Respuesta al Descenso del Potencial Hídrico (\u03A8w)&lt;/b&gt;"</span>,</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">xaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"Potencial Hídrico Foliar \u03A8w (MPa)"</span>, <span class="at">gridcolor =</span> <span class="st">"#e2e8f0"</span>),</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>    <span class="at">yaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"Contenido de Prolina Libre (\u03BCmol/g MF)"</span>, <span class="at">gridcolor =</span> <span class="st">"#e2e8f0"</span>),</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend =</span> <span class="fu">list</span>(<span class="at">orientation =</span> <span class="st">"h"</span>, <span class="at">x =</span> <span class="fl">0.2</span>, <span class="at">y =</span> <span class="sc">-</span><span class="fl">0.2</span>),</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot_bgcolor =</span> <span class="st">"#fafafa"</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>p_drought</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="fu">### Factores Determinantes de la Tolerancia a Sequía</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Ajuste Osmótico Activo:** El genotipo tolerante acumula hasta **3 veces más prolina** que el sensible cuando el potencial hídrico desciende por debajo de $-2.0\text{ MPa}$.</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Eficiencia en el Uso del Agua (WUE):** Coordinación estomática para maximizar la asimilación de $\text{CO}_2$ minimizando la transpiración.</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Mantenimiento del Turgor Celular:** Preservación de la presión de turgencia $\Psi_p$ en hojas bandera.</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 
 
 
 
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
