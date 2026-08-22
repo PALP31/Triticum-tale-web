@@ -1,4 +1,8 @@
 <div align="center">
+  <img src="assets/banner.svg" width="100%" alt="Triticum-tale-web Banner" />
+</div>
+
+<div align="center">
 
 # 🌾 Triticum Tale: Data Art & Explorador Multi-Ómico
 
